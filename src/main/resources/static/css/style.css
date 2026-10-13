@@ -1,0 +1,757 @@
+:root {
+  color-scheme: dark;
+  --texto: #f8f5fc;
+  --secundario: #ded5e8;
+  --acento: #c4b5fd;
+  --boton: #6d28d9;
+  --borde: rgba(255, 255, 255, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", Arial, sans-serif;
+  color: var(--texto);
+  background-color: #211729;
+  background-image:
+    linear-gradient(
+      rgba(21, 16, 28, 0.25),
+      rgba(21, 16, 28, 0.45)
+    ),
+    url("../img/fondo.png");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #fde68a;
+  outline-offset: 4px;
+}
+
+/* Encabezado de inicio, login y registro */
+
+.cabecera {
+  width: min(1200px, 100%);
+  margin: auto;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.marca {
+  display: inline-flex;
+  flex-shrink: 0;
+}
+
+.logo {
+  width: 180px;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.accesibilidad {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.accesibilidad button,
+.pie button {
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  color: var(--texto);
+  background: rgba(21, 16, 28, 0.85);
+}
+
+.accesibilidad button:hover,
+.pie button:hover {
+  background: #35243f;
+}
+
+.accesibilidad button[aria-pressed="true"] {
+  border-color: var(--acento);
+  background: #4c1d95;
+}
+
+/* Contenedores */
+
+.contenido {
+  padding: 24px 24px 40px;
+}
+
+.panel {
+  width: min(1050px, 100%);
+  margin: auto;
+  padding: clamp(24px, 4vw, 52px);
+  border: 1px solid var(--borde);
+  border-radius: 28px;
+  background: rgba(33, 23, 41, 0.42);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+}
+
+.presentacion {
+  text-align: center;
+  max-width: 740px;
+  margin: auto;
+}
+
+.etiqueta {
+  display: inline-block;
+  padding: 9px 16px;
+  border: 1px solid rgba(196, 181, 253, 0.4);
+  border-radius: 999px;
+  color: #e9ddff;
+  background: rgba(124, 58, 237, 0.15);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1 {
+  margin: 24px 0 18px;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+h1 span {
+  color: var(--acento);
+}
+
+h2 {
+  font-size: 1.4rem;
+  line-height: 1.35;
+  margin: 0 0 10px;
+}
+
+h3 {
+  margin: 20px 0 10px;
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.descripcion,
+.indicacion {
+  color: var(--secundario);
+  line-height: 1.65;
+}
+
+.descripcion {
+  margin: 0 auto;
+  max-width: 640px;
+}
+
+/* Selección de perfil */
+
+.seleccion {
+  margin-top: 36px;
+}
+
+.seleccion > h2,
+.indicacion {
+  text-align: center;
+}
+
+.indicacion {
+  margin: 0 0 24px;
+}
+
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 28px;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+  background: rgba(33, 23, 41, 0.6);
+}
+
+.icono {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgba(196, 181, 253, 0.14);
+  color: #ddd0ff;
+}
+
+.icono svg {
+  width: 30px;
+  height: 30px;
+}
+
+.tarjeta > p {
+  margin: 0 0 24px;
+  color: var(--secundario);
+  line-height: 1.6;
+}
+
+/* Botones y enlaces */
+
+.boton-principal {
+  min-height: 52px;
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: var(--boton);
+  color: #fff;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 1.5;
+}
+
+.tarjeta .boton-principal {
+  margin-top: auto;
+}
+
+.boton-principal:hover {
+  background: #5b21b6;
+}
+
+.boton-secundario {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 12px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  color: #e0d5ff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  line-height: 1.5;
+}
+
+.enlace-registro {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.enlace-volver {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  color: #f1eaff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  line-height: 1.5;
+}
+
+.mensaje-final {
+  margin: 28px 0 0;
+  text-align: center;
+  color: var(--secundario);
+  line-height: 1.6;
+}
+
+/* Login y registro */
+
+.panel-login {
+  max-width: 560px;
+}
+
+.panel-login > .enlace-volver {
+  margin-bottom: 24px;
+}
+
+.panel-login h1 {
+  font-size: clamp(1.7rem, 4vw, 2rem);
+}
+
+.formulario-login {
+  display: grid;
+  gap: 22px;
+  margin-top: 30px;
+}
+
+.campo {
+  display: grid;
+  gap: 10px;
+}
+
+.campo label {
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.campo input,
+.campo select,
+.campo textarea {
+  width: 100%;
+  min-width: 0;
+  min-height: 54px;
+  padding: 14px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  background: rgba(21, 16, 28, 0.85);
+  color: #fff;
+}
+
+.campo select {
+  background: #211729;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+  color: #cfc3db;
+}
+
+.entrada-clave {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.entrada-clave input {
+  flex: 1;
+}
+
+.entrada-clave button {
+  min-height: 54px;
+  padding: 10px 14px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  color: #fff;
+  background: #35243f;
+}
+
+.enlace-formulario {
+  justify-self: end;
+  min-height: 48px;
+  padding: 8px 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #f1eaff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.mensaje-login {
+  margin: 0;
+  line-height: 1.6;
+  color: #fff;
+}
+
+.mensaje-login:empty {
+  display: none;
+}
+
+.registro-login {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--borde);
+  text-align: center;
+}
+
+.registro-login p {
+  margin: 0;
+  line-height: 1.6;
+  color: var(--secundario);
+}
+
+.aviso-demo {
+  margin: 22px 0 0;
+  text-align: center;
+  color: var(--secundario);
+  line-height: 1.6;
+}
+
+.ayuda-campo {
+  color: var(--secundario);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.barra-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Pie de página */
+
+.pie {
+  padding: 0 24px 24px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.pie p {
+  line-height: 1.6;
+}
+
+/* Diálogos */
+
+dialog {
+  width: min(500px, calc(100% - 32px));
+  max-height: calc(100dvh - 48px);
+  overflow-y: auto;
+  padding: 28px;
+  color: var(--texto);
+  background: #211729;
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+}
+
+dialog p {
+  line-height: 1.65;
+  color: var(--secundario);
+}
+
+dialog::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* Accesibilidad */
+
+.saltar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  transform: translateY(-200%);
+  z-index: 100;
+  padding: 14px;
+  color: #fff;
+  background: #4c1d95;
+  border-radius: 8px;
+}
+
+.saltar:focus {
+  transform: translateY(0);
+}
+
+.solo-lector {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+html.texto-grande {
+  font-size: 22px;
+}
+
+body.alto-contraste {
+  --texto: #fff;
+  --secundario: #fff;
+  --acento: #fde047;
+  --borde: #fff;
+  background: #000;
+}
+
+.alto-contraste .panel,
+.alto-contraste .tarjeta,
+.alto-contraste dialog,
+.alto-contraste .accesibilidad button,
+.alto-contraste .pie button {
+  background: #000;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.alto-contraste .etiqueta,
+.alto-contraste .boton-secundario,
+.alto-contraste .icono {
+  color: #fde047;
+}
+
+.alto-contraste .campo input,
+.alto-contraste .campo select,
+.alto-contraste .campo textarea,
+.alto-contraste .entrada-clave button {
+  background: #000;
+  border-color: #fff;
+}
+
+/* Celulares */
+
+@media (max-width: 760px) {
+  .cabecera {
+    flex-direction: column;
+    padding: 20px 16px;
+  }
+
+  .accesibilidad {
+    justify-content: center;
+  }
+
+  .contenido {
+    padding: 12px 16px 28px;
+  }
+
+  .tarjetas {
+    grid-template-columns: 1fr;
+  }
+
+  .tarjeta {
+    padding: 24px;
+  }
+
+  .barra-panel {
+    justify-content: center;
+    text-align: center;
+  }
+
+  body {
+    background-attachment: scroll;
+  }
+}
+
+@media (max-width: 380px) {
+  .entrada-clave {
+    flex-direction: column;
+  }
+}
+
+/* Fondo de paisaje */
+body {
+  background-color: #211729;
+  background-image:
+    linear-gradient(
+      rgba(21, 16, 28, 0.25),
+      rgba(21, 16, 28, 0.45)
+    ),
+    url("../img/fondo.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Mantener la opción de alto contraste */
+body.alto-contraste {
+  background: #000;
+}
+
+@media (max-width: 760px) {
+  body {
+    background-attachment: scroll;
+  }
+}
+
+/* Paisaje normal */
+body {
+  background-color: #211729;
+  background-image:
+    linear-gradient(
+      rgba(21, 16, 28, 0.25),
+      rgba(21, 16, 28, 0.45)
+    ),
+    url("../img/fondo.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Paisaje nocturno al activar Contraste */
+body.alto-contraste {
+  background-color: #080b18;
+  background-image:
+    linear-gradient(
+      rgba(4, 7, 18, 0.35),
+      rgba(4, 7, 18, 0.65)
+    ),
+    url("../img/fondo-noche.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Superficies sólidas para mantener la lectura */
+body.alto-contraste .panel,
+body.alto-contraste .tarjeta,
+body.alto-contraste .menu-lateral,
+body.alto-contraste .superficie-panel,
+body.alto-contraste .demo-registro,
+body.alto-contraste .plan-tarjeta,
+body.alto-contraste .plan-confirmacion,
+body.alto-contraste dialog {
+  background: #000;
+  color: #fff;
+  border-color: #fff;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+@media (max-width: 760px) {
+  body,
+  body.alto-contraste {
+    background-attachment: scroll;
+  }
+}
+
+/* Paneles transparentes sobre el paisaje nocturno */
+body.alto-contraste .panel,
+body.alto-contraste .tarjeta,
+body.alto-contraste .menu-lateral,
+body.alto-contraste .superficie-panel,
+body.alto-contraste .demo-registro,
+body.alto-contraste .plan-tarjeta,
+body.alto-contraste .plan-confirmacion,
+body.alto-contraste .aviso-modulo {
+  background: rgba(8, 11, 24, 0.68);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Menú seleccionado claramente visible */
+body.alto-contraste .opcion-menu[aria-current="page"] {
+  background: #fde047;
+  color: #000;
+}
+
+/* Mantener legibles los campos y las ventanas de ayuda */
+body.alto-contraste .campo input,
+body.alto-contraste .demo-formulario textarea,
+body.alto-contraste .demo-formulario select,
+body.alto-contraste .demo-busqueda input,
+body.alto-contraste dialog {
+  background: #080b18;
+  color: #fff;
+  border-color: #fff;
+}
+
+/* Destacar los planes */
+body.alto-contraste .plan-recomendado,
+body.alto-contraste .plan-seleccionado {
+  border: 2px solid #fde047;
+}
+
+/* Transparencia del modo nocturno */
+body.alto-contraste .panel,
+body.alto-contraste .tarjeta,
+body.alto-contraste .menu-lateral,
+body.alto-contraste .superficie-panel,
+body.alto-contraste .demo-registro,
+body.alto-contraste .plan-tarjeta,
+body.alto-contraste .plan-confirmacion,
+body.alto-contraste .aviso-modulo {
+  background: rgba(15, 18, 38, 0.40) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+/* Mostrar mejor el paisaje nocturno */
+body.alto-contraste {
+  background:
+    linear-gradient(
+      rgba(4, 7, 18, 0.10),
+      rgba(4, 7, 18, 0.20)
+    ),
+    url("../img/fondo-noche.png")
+    center / cover no-repeat fixed !important;
+}
+
+@media (max-width: 760px) {
+  body.alto-contraste {
+    background-attachment: scroll !important;
+  }
+}
+
+/* Logo azul claro en el inicio y ambos paneles */
+img.logo,
+.marca-panel img,
+body.alto-contraste img.logo,
+body.alto-contraste .marca-panel img {
+  filter:
+    brightness(0)
+    saturate(100%)
+    invert(72%)
+    sepia(65%)
+    saturate(1100%)
+    hue-rotate(165deg)
+    brightness(105%)
+    contrast(100%)
+    drop-shadow(0 2px 5px rgba(0, 0, 0, 0.85));
+}
+
+/* Botones transparentes en modo oscuro */
+body.alto-contraste .accesibilidad button {
+  background: rgba(15, 18, 38, 0.30) !important;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+body.alto-contraste .accesibilidad button:hover {
+  background: rgba(56, 189, 248, 0.25) !important;
+}
+
+/* Identificar las opciones activadas */
+body.alto-contraste .accesibilidad button[aria-pressed="true"] {
+  border: 2px solid #fde047;
+}
+
+/* Foco visible al navegar con teclado */
+body.alto-contraste .accesibilidad button:focus-visible {
+  outline: 3px solid #fde047;
+  outline-offset: 4px;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211729">
+
+  <title>AccesIA | Panel del beneficiario</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/paneles.css">
+
+  <script src="js/beneficiario.js" defer></script>
+</head>
+
+<body class="pagina-panel" data-perfil="beneficiario">
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <div class="estructura-panel">
+    <aside class="menu-lateral" aria-label="Panel del beneficiario">
+      <a
+        class="marca-panel"
+        href="panel-beneficiario.html"
+        aria-label="Inicio del panel del beneficiario">
+        <img src="img/logo.png" alt="AccesIA">
+      </a>
+
+      <p class="nombre-perfil">Espacio del beneficiario</p>
+
+      <nav
+        id="menu-modulos"
+        class="menu-modulos"
+        aria-label="Navegación del beneficiario">
+
+        <button
+          class="opcion-menu"
+          type="button"
+          data-modulo="inicio"
+          aria-current="page">
+          <span aria-hidden="true">⌂</span>
+          <span>Inicio</span>
+        </button>
+
+        <button
+          class="opcion-menu"
+          type="button"
+          data-modulo="servicios">
+          <span aria-hidden="true">▦</span>
+          <span>Servicios disponibles</span>
+        </button>
+
+        <button
+          class="opcion-menu"
+          type="button"
+          data-modulo="solicitar">
+          <span aria-hidden="true">+</span>
+          <span>Solicitar apoyo</span>
+        </button>
+
+        <button
+          class="opcion-menu"
+          type="button"
+          data-modulo="solicitudes">
+          <span aria-hidden="true">▤</span>
+          <span>Mis solicitudes</span>
+        </button>
+
+        <button
+          class="opcion-menu"
+          type="button"
+          data-modulo="asistente">
+          <span aria-hidden="true">✧</span>
+          <span>Asistente IA</span>
+        </button>
+      </nav>
+
+      <div class="menu-inferior">
+        <button id="ayuda-btn" class="opcion-menu" type="button">
+          <span aria-hidden="true">?</span>
+          <span>Ayuda</span>
+        </button>
+
+        <a class="opcion-menu" href="index.html">
+          <span aria-hidden="true">↪</span>
+          <span>Salir de la demostración</span>
+        </a>
+      </div>
+    </aside>
+
+    <div class="zona-principal">
+      <header class="barra-superior">
+        <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
+          <button id="texto-btn" type="button" aria-pressed="false">
+            A+ Tamaño de texto
+          </button>
+
+          <button id="contraste-btn" type="button" aria-pressed="false">
+            ◐ Contraste
+          </button>
+
+          <button id="leer-btn" type="button">
+            ▶ Leer página
+          </button>
+        </nav>
+      </header>
+
+      <main id="contenido" class="contenido-panel" tabindex="-1">
+        <section class="introduccion-panel" aria-labelledby="titulo-panel">
+          <span id="etiqueta-panel" class="etiqueta">
+            Panel del beneficiario
+          </span>
+
+          <h1 id="titulo-panel">Tu apoyo, más cerca.</h1>
+
+          <p id="descripcion-panel" class="descripcion">
+            Encuentra servicios, solicita asistencia y consulta
+            el avance de tu atención.
+          </p>
+        </section>
+
+        <section
+          id="vista-modulo"
+          class="superficie-panel"
+          aria-labelledby="titulo-vista">
+          <h2 id="titulo-vista">Bienvenido a tu espacio de apoyo</h2>
+        </section>
+      </main>
+
+      <footer class="footer-panel">
+        <p>AccesIA · Servicios de apoyo accesibles</p>
+        <p>Modo demostración · Sin conexión a cuentas reales.</p>
+      </footer>
+    </div>
+  </div>
+
+  <p
+    id="estado"
+    class="solo-lector"
+    role="status"
+    aria-live="polite"></p>
+
+  <dialog
+    id="dialogo"
+    aria-labelledby="dialogo-titulo"
+    aria-describedby="dialogo-texto">
+    <h2 id="dialogo-titulo">Ayuda</h2>
+
+    <p id="dialogo-texto">
+      En Inicio, selecciona un beneficiario ficticio o crea uno.
+      Consulta los servicios disponibles y envía una solicitud.
+      Luego podrás revisar su estado en Mis solicitudes.
+      Esta selección simula un perfil; no es un inicio de sesión real.
+    </p>
+
+    <button
+      id="cerrar-dialogo"
+      class="boton-principal"
+      type="button"
+      autofocus>
+      Volver al panel
+    </button>
+  </dialog>
+</body>
+</html>

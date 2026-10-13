@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211729">
+  <title>AccesIA | Acceso para beneficiarios</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/login.js" defer></script>
+</head>
+
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <a class="marca" href="index.html"
+       aria-label="Volver al inicio de AccesIA">
+      <img src="img/logo.png" alt="AccesIA" class="logo">
+    </a>
+
+    <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
+      <button id="texto-btn" type="button" aria-pressed="false">
+        A+ Tamaño de texto
+      </button>
+
+      <button id="contraste-btn" type="button" aria-pressed="false">
+        ◐ Contraste
+      </button>
+
+      <button id="leer-btn" type="button">
+        ▶ Leer página
+      </button>
+    </nav>
+  </header>
+
+  <main id="contenido" class="contenido">
+    <section class="panel panel-login" aria-labelledby="titulo-login">
+      <a class="enlace-volver" href="index.html">
+        ← Cambiar tipo de acceso
+      </a>
+
+      <div class="presentacion">
+        <span class="etiqueta" id="tipo-acceso">
+          Acceso para beneficiarios
+        </span>
+
+        <h1 id="titulo-login">Tu apoyo comienza aquí</h1>
+
+        <p class="descripcion" id="descripcion-login">
+          Ingresa para explorar los servicios de apoyo y conocer tu panel.
+        </p>
+      </div>
+
+      <form
+        id="login-form"
+        class="formulario-login"
+        data-destino-demo="panel-beneficiario.html">
+
+        <div class="campo">
+          <label for="correo">Correo electrónico</label>
+
+          <input
+            id="correo"
+            name="correo"
+            type="email"
+            placeholder="demo@example.com"
+            autocomplete="username"
+            required>
+        </div>
+
+        <div class="campo">
+          <label for="clave">Contraseña</label>
+
+          <div class="entrada-clave">
+            <input
+              id="clave"
+              name="clave"
+              type="password"
+              placeholder="Escribe una contraseña de prueba"
+              autocomplete="current-password"
+              required>
+
+            <button
+              id="mostrar-clave"
+              type="button"
+              aria-controls="clave"
+              aria-pressed="false">
+              Mostrar
+            </button>
+          </div>
+        </div>
+
+        <button
+          id="recuperar-btn"
+          class="enlace-formulario"
+          type="button">
+          ¿Olvidaste tu contraseña?
+        </button>
+
+        <button class="boton-principal" type="submit">
+          Entrar al panel de demostración
+        </button>
+
+        <p
+          id="mensaje-login"
+          class="mensaje-login"
+          role="status"
+          aria-live="polite"></p>
+      </form>
+
+      <div class="registro-login">
+        <p>¿Aún no tienes una cuenta?</p>
+
+        <a
+          class="boton-secundario enlace-registro"
+          href="registro-beneficiario.html">
+          Registrar beneficiario
+        </a>
+      </div>
+
+      <p class="aviso-demo">
+        Modo demostración · Usa datos de prueba.
+        El acceso todavía no verifica cuentas ni guarda los datos ingresados.
+      </p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>AccesIA · Servicios de apoyo accesibles</p>
+
+    <a class="enlace-volver" href="index.html">
+      Volver al inicio
+    </a>
+  </footer>
+
+  <p
+    id="estado"
+    class="solo-lector"
+    role="status"
+    aria-live="polite"></p>
+</body>
+</html>

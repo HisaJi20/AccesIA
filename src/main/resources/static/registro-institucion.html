@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#211729">
+  <title>AccesIA | Registrar institución</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/registro.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <header class="cabecera">
+    <a class="marca" href="index.html" aria-label="Volver al inicio">
+      <img src="img/logo.png" alt="AccesIA" class="logo">
+    </a>
+
+    <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
+      <button id="texto-btn" type="button" aria-pressed="false">
+        A+ Tamaño de texto
+      </button>
+      <button id="contraste-btn" type="button" aria-pressed="false">
+        ◐ Contraste
+      </button>
+      <button id="leer-btn" type="button">▶ Leer página</button>
+    </nav>
+  </header>
+
+  <main id="contenido" class="contenido">
+    <section class="panel panel-login" aria-labelledby="titulo-registro">
+      <a class="enlace-volver" href="index.html">← Volver al inicio</a>
+
+      <div class="presentacion">
+        <span class="etiqueta">Registro institucional</span>
+        <h1 id="titulo-registro">Conecta tu institución</h1>
+        <p class="descripcion">
+          Completa los datos para comenzar a organizar tus servicios de apoyo.
+        </p>
+      </div>
+
+      <form id="registro-form" class="formulario-login">
+        <div class="campo">
+          <label for="institucion">Nombre de la institución</label>
+          <input id="institucion" name="institucion" type="text"
+                 autocomplete="organization" maxlength="150" required>
+        </div>
+
+        <div class="campo">
+          <label for="tipo">Tipo de institución</label>
+          <select id="tipo" name="tipo" required>
+            <option value="">Selecciona una opción</option>
+            <option value="municipalidad">Municipalidad</option>
+            <option value="ong">ONG</option>
+            <option value="universidad">Universidad</option>
+            <option value="centro">Centro de apoyo</option>
+            <option value="otra">Otra institución</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="responsable">Nombre del responsable</label>
+          <input id="responsable" name="responsable" type="text"
+                 autocomplete="name" maxlength="120" required>
+        </div>
+
+        <div class="campo">
+          <label for="correo">Correo electrónico institucional</label>
+          <input id="correo" name="correo" type="email"
+                 autocomplete="username" maxlength="254" required>
+        </div>
+
+        <div class="campo">
+          <label for="telefono">Teléfono de contacto (opcional)</label>
+          <input id="telefono" name="telefono" type="tel"
+                 autocomplete="tel" maxlength="30">
+        </div>
+
+        <div class="campo">
+          <label for="clave">Contraseña</label>
+          <div class="entrada-clave">
+            <input id="clave" name="clave" type="password"
+                   autocomplete="new-password" minlength="8"
+                   aria-describedby="ayuda-clave" required>
+            <button type="button" data-mostrar="clave"
+                    aria-controls="clave" aria-pressed="false">
+              Mostrar
+            </button>
+          </div>
+          <small id="ayuda-clave" class="ayuda-campo">
+            Usa al menos 8 caracteres.
+          </small>
+        </div>
+
+        <div class="campo">
+          <label for="confirmar-clave">Confirmar contraseña</label>
+          <div class="entrada-clave">
+            <input id="confirmar-clave" name="confirmar-clave"
+                   type="password" autocomplete="new-password"
+                   minlength="8" required>
+            <button type="button" data-mostrar="confirmar-clave"
+                    aria-controls="confirmar-clave" aria-pressed="false">
+              Mostrar
+            </button>
+          </div>
+        </div>
+
+        <button class="boton-principal" type="submit">
+          Registrar institución
+        </button>
+
+        <p id="mensaje-registro" class="mensaje-login"
+           role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="registro-login">
+        <p>¿Tu institución ya tiene una cuenta?</p>
+        <a class="boton-secundario enlace-registro"
+           href="login-institucion.html">
+          Acceso institucional
+        </a>
+      </div>
+
+      <p class="aviso-demo">
+        Prototipo · Este formulario todavía no guarda cuentas.
+      </p>
+    </section>
+  </main>
+
+  <footer class="pie">
+    <p>AccesIA · Servicios de apoyo accesibles</p>
+  </footer>
+</body>
+</html>
