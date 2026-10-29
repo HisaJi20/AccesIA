@@ -602,21 +602,186 @@
     }
   }
 
-  function mostrarAsistente() {
-    preparar(
-      "asistente",
-      "Asistente IA",
-      "Este módulo se conectará en el siguiente paso."
+function mostrarAsistente() {
+  preparar(
+    "asistente",
+    "Asistente IA",
+    "Consulta cómo usar AccesIA y encontrar servicios de apoyo."
+  );
+
+  const aviso = elemento(
+    "p",
+    "Las respuestas se generan con IA y pueden contener errores. El asistente orienta; no registra solicitudes por ti.",
+    "aviso-modulo"
+  );
+
+  const conversacion = elemento("div", "", "chat-mensajes");
+  conversacion.setAttribute("role", "log");
+  conversacion.setAttribute("aria-label", "Conversación con el asistente");
+  conversacion.setAttribute("aria-live", "polite");
+  conversacion.setAttribute("aria-relevant", "additions");
+  conversacion.tabIndex = 0;
+
+  function agregarMensaje(autor, texto, esUsuario = false) {
+    const mensaje = elemento(
+      "div",
+      "",
+      esUsuario
+        ? "chat-mensaje chat-usuario"
+        : "chat-mensaje"
     );
 
-    vista.append(
-      elemento(
-        "p",
-        "El asistente todavía no está conectado a Ollama. Por ahora, puedes consultar servicios y enviar solicitudes.",
-        "texto-panel"
-      )
+    mensaje.append(
+      elemento("strong", autor),
+      elemento("p", texto)
     );
+
+    conversacion.append(mensaje);
+    conversacion.scrollTop = conversacion.scrollHeight;
   }
+
+  agregarMensaje(
+    "Asistente de AccesIA",
+    "Hola. ¿Qué necesitas saber sobre los servicios o el uso de AccesIA?"
+  );
+
+  const formulario = elemento("form", "", "formulario-login");
+
+  const etiquetaConsulta = elemento("label", "Escribe tu consulta");
+  etiquetaConsulta.htmlFor = "consulta-asistente";
+
+  const consulta = elemento("textarea");
+  consulta.id = "consulta-asistente";
+  consulta.name = "consulta";
+  consulta.rows = 3;
+  consulta.maxLength = 1000;
+  consulta.required = true;
+  consulta.placeholder = "Por ejemplo: ¿cómo puedo solicitar apoyo?";
+
+  const grupo = elemento("div", "", "campo");
+  grupo.append(etiquetaConsulta, consulta);
+
+  const enviar = elemento(
+    "button",
+    "Enviar consulta",
+    "boton-principal"
+  );
+  enviar.type = "submit";
+
+  const estadoConsulta = elemento("p", "", "mensaje-login");
+  estadoConsulta.setAttribute("role", "status");
+  estadoConsulta.setAttribute("aria-live", "polite");
+
+  formulario.append(grupo, enviar, estadoConsulta);
+
+  let enviando = false;
+
+  consulta.addEventListener("input", () => {
+    consulta.setCustomValidity("");
+  });
+
+  formulario.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+
+    if (enviando) return;
+
+    const texto = consulta.value.trim();
+
+    consulta.setCustomValidity(
+      texto ? "" : "Escribe una consulta para continuar."
+    );
+
+    if (!formulario.reportValidity()) return;
+
+    agregarMensaje("Tú", texto, true);
+
+    enviando = true;
+    enviar.disabled = true;
+    enviar.textContent = "Consultando…";
+    consulta.readOnly = true;
+    estadoConsulta.textContent =
+      "El asistente está preparando una respuesta.";
+
+    const controlador = new AbortController();
+    const temporizador = setTimeout(
+      () => controlador.abort(),
+      130000
+    );
+
+    let completado = false;
+
+    try {
+      const respuestaHTTP = await fetch("/api/asistente", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify({ mensaje: texto }),
+        signal: controlador.signal
+      });
+
+      const tipoContenido =
+        respuestaHTTP.headers.get("content-type") || "";
+
+      if (!tipoContenido.includes("application/json")) {
+        throw new Error(
+          "El servidor no devolvió una respuesta JSON. Comprueba que Spring Boot esté actualizado y ejecutándose."
+        );
+      }
+
+      const datos = await respuestaHTTP.json();
+
+      if (!respuestaHTTP.ok) {
+        throw new Error(
+          datos.respuesta || "No se pudo consultar al asistente."
+        );
+      }
+
+      if (
+        typeof datos.respuesta !== "string" ||
+        !datos.respuesta.trim()
+      ) {
+        throw new Error("El asistente devolvió una respuesta vacía.");
+      }
+
+      agregarMensaje(
+        "Asistente de AccesIA",
+        datos.respuesta.trim()
+      );
+
+      consulta.value = "";
+      completado = true;
+      estadoConsulta.textContent = "";
+    } catch (error) {
+      const textoError =
+        error.name === "AbortError"
+          ? "La consulta tardó demasiado. Intenta nuevamente."
+          : error.message || "No se pudo conectar con el servidor.";
+
+      estadoConsulta.textContent = textoError;
+    } finally {
+      clearTimeout(temporizador);
+
+      enviando = false;
+      enviar.disabled = false;
+      enviar.textContent = "Enviar consulta";
+      consulta.readOnly = false;
+
+      if (formulario.isConnected) {
+        consulta.focus();
+
+        if (!completado) {
+          avisar(
+            "No se completó la consulta. Tu mensaje se conserva para que puedas volver a enviarlo."
+          );
+        }
+      }
+    }
+  });
+
+  vista.append(aviso, conversacion, formulario);
+}
 
   const pantallas = {
     inicio: mostrarInicio,

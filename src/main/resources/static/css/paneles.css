@@ -395,3 +395,93 @@ body.alto-contraste[data-perfil="beneficiario"] .demo-registro {
   background: rgba(15, 18, 38, 0.40) !important;
   border-color: rgba(255, 255, 255, 0.65);
 }
+
+/* Chat del asistente */
+
+.chat-mensajes {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  max-height: 420px;
+  overflow-y: auto;
+  margin-top: 24px;
+  padding: 18px;
+  border: 1px solid var(--borde);
+  border-radius: 18px;
+  background: rgba(15, 12, 26, 0.40);
+}
+
+.chat-mensaje {
+  align-self: flex-start;
+  width: fit-content;
+  max-width: 90%;
+  padding: 16px 20px;
+  border: 1px solid var(--borde);
+  border-radius: 16px;
+  background: #292035;
+  color: #fff;
+  overflow-wrap: anywhere;
+}
+
+.chat-mensaje strong {
+  display: block;
+  color: #ddd0ff;
+}
+
+.chat-mensaje p {
+  margin: 8px 0 0;
+  line-height: 1.7;
+  white-space: pre-wrap;
+}
+
+.chat-usuario {
+  align-self: flex-end;
+  background: #4c1d95;
+}
+
+.chat-usuario strong {
+  color: #fff;
+}
+
+#consulta-asistente {
+  width: 100%;
+  min-height: 110px;
+  padding: 16px;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: #211729;
+  color: #fff;
+  font: inherit;
+  resize: vertical;
+}
+
+#consulta-asistente::placeholder {
+  color: #ded5e8;
+}
+
+#consulta-asistente:focus-visible,
+.chat-mensajes:focus-visible {
+  outline: 3px solid #fde68a;
+  outline-offset: 4px;
+}
+
+body.alto-contraste .chat-mensaje,
+body.alto-contraste #consulta-asistente {
+  background: #080b18;
+  color: #fff;
+  border-color: #fff;
+}
+
+body.alto-contraste .chat-mensaje strong {
+  color: #fde047;
+}
+
+@media (max-width: 760px) {
+  .chat-mensajes {
+    padding: 12px;
+  }
+
+  .chat-mensaje {
+    max-width: 100%;
+  }
+}
