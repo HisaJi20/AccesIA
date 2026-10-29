@@ -1,0 +1,584 @@
+
+/* =========================================
+   ACCESIA - BENEFICIARIOS AFILIADOS
+   DISEÑO INSTITUCIONAL CLARO / OSCURO
+========================================= */
+
+/* =========================================
+   PESTAÑAS
+========================================= */
+
+.ba-pestanas {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin: 23px 0;
+  padding: 7px;
+
+  width: fit-content;
+  max-width: 100%;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
+
+.ba-pestana {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 140px;
+  min-height: 44px;
+  padding: 11px 20px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: var(--muted);
+
+  font-family: inherit;
+  font-size: .85rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease;
+}
+
+.ba-pestana:hover {
+  color: var(--text);
+  background: var(--card);
+}
+
+.ba-pestana.ba-activa {
+  color: #ffffff;
+
+  background: linear-gradient(
+    120deg,
+    #1672e6,
+    #1954bd
+  );
+
+  border-color: #2275db;
+
+  box-shadow: 0 5px 14px
+    rgba(10, 83, 178, .18);
+}
+
+/* =========================================
+   CONTENEDOR PRINCIPAL
+========================================= */
+
+.ba-contenedor {
+  padding: clamp(20px, 3vw, 29px);
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 17px;
+
+  color: var(--text);
+
+  box-shadow: 0 12px 30px
+    rgba(0, 20, 60, .06);
+}
+
+.ba-contenedor[hidden] {
+  display: none !important;
+}
+
+.ba-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 18px;
+
+  padding-bottom: 23px;
+  margin-bottom: 24px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.ba-eyebrow {
+  display: inline-block;
+  margin-bottom: 8px;
+
+  color: var(--accent);
+
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .11em;
+}
+
+.ba-encabezado h3 {
+  margin: 0 0 9px;
+
+  color: var(--text);
+
+  font-size: 1.28rem;
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+.ba-encabezado p {
+  max-width: 550px;
+  margin: 0;
+
+  color: var(--muted);
+
+  font-size: .84rem;
+  line-height: 1.7;
+}
+
+/* =========================================
+   INDICADORES
+========================================= */
+
+.ba-resumen {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.ba-indicador {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+
+  min-height: 108px;
+  padding: 20px;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background: var(--surface);
+}
+
+.ba-indicador span {
+  font-size: .79rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.ba-indicador strong {
+  font-size: 1.28rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+/* =========================================
+   MENSAJES
+========================================= */
+
+.ba-mensaje {
+  min-height: 20px;
+  margin: 14px 0;
+
+  color: var(--muted);
+  font-size: .8rem;
+  line-height: 1.6;
+}
+
+.ba-mensaje[data-error="true"] {
+  color: #ff8d96;
+}
+
+:root[data-theme="light"]
+.ba-mensaje[data-error="true"] {
+  color: #a82336;
+}
+
+/* =========================================
+   TABLA DE AFILIADOS
+========================================= */
+
+.ba-tabla-scroll {
+  width: 100%;
+  overflow-x: auto;
+
+  border: 1px solid var(--border);
+  border-radius: 13px;
+}
+
+.ba-tabla {
+  width: 100%;
+  min-width: 760px;
+
+  border-collapse: collapse;
+
+  color: var(--text);
+  font-size: .82rem;
+}
+
+.ba-tabla thead {
+  background: var(--surface);
+}
+
+.ba-tabla th {
+  padding: 16px 17px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--muted);
+  font-size: .74rem;
+  font-weight: 800;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ba-tabla td {
+  padding: 18px 17px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.ba-tabla tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ba-tabla tbody tr:hover {
+  background: var(--surface);
+}
+
+.ba-nombre {
+  font-weight: 800;
+}
+
+.ba-vacio {
+  padding: 35px 20px !important;
+  color: var(--muted) !important;
+  text-align: center;
+}
+
+/* =========================================
+   ETIQUETA DE APROBACIÓN
+========================================= */
+
+.ba-etiqueta-aprobada {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 7px 12px;
+
+  background: #dcf7e9;
+  color: #14613f;
+
+  border: 1px solid #98d9b9;
+  border-radius: 30px;
+
+  font-size: .73rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+/* =========================================
+   BOTONES
+========================================= */
+
+.ba-boton,
+.ba-boton-secundario {
+  min-height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 10px 17px;
+
+  font: inherit;
+  font-size: .78rem;
+  font-weight: 800;
+
+  border-radius: 9px;
+  cursor: pointer;
+
+  transition: filter .2s ease;
+}
+
+.ba-boton {
+  background: linear-gradient(
+    120deg,
+    #1575ed,
+    #1852bd
+  );
+
+  border: 1px solid #2166cf;
+  color: #ffffff;
+}
+
+.ba-boton-secundario {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.ba-boton:hover:not(:disabled),
+.ba-boton-secundario:hover:not(:disabled) {
+  filter: brightness(1.1);
+}
+
+.ba-boton:disabled,
+.ba-boton-secundario:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   PAGINACIÓN
+========================================= */
+
+.ba-paginacion {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 13px;
+
+  margin-top: 21px;
+}
+
+.ba-paginacion > span,
+.ba-pagina-acciones > span {
+  font-size: .78rem;
+  color: var(--muted);
+}
+
+.ba-pagina-acciones {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* =========================================
+   FICHA MODAL
+========================================= */
+
+.ba-dialogo {
+  width: min(720px, calc(100vw - 28px));
+  max-height: min(90vh, 850px);
+
+  padding: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 19px;
+
+  background: var(--card);
+  color: var(--text);
+
+  overflow-y: auto;
+
+  box-shadow: 0 25px 80px
+    rgba(0, 0, 0, .28);
+}
+
+.ba-dialogo::backdrop {
+  background: rgba(3, 13, 29, .72);
+  backdrop-filter: blur(5px);
+}
+
+.ba-dialogo-contenido {
+  padding: 29px;
+}
+
+.ba-dialogo-encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+
+  padding-bottom: 21px;
+
+  border-bottom: 1px solid var(--border);
+}
+
+.ba-dialogo-encabezado h2 {
+  margin: 0 0 9px;
+
+  font-size: 1.38rem;
+  font-weight: 800;
+  color: var(--text);
+}
+
+.ba-dialogo-encabezado p {
+  margin: 0;
+
+  font-size: .81rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.ba-cerrar {
+  min-width: 39px;
+  min-height: 39px;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  background: var(--surface);
+  color: var(--text);
+
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.ba-ficha-estado {
+  margin: 21px 0;
+}
+
+.ba-ficha-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+.ba-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  padding: 17px;
+
+  background: var(--surface);
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  min-width: 0;
+}
+
+.ba-campo span {
+  color: var(--muted);
+  font-size: .74rem;
+  line-height: 1.5;
+}
+
+.ba-campo strong {
+  color: var(--text);
+
+  font-size: .83rem;
+  font-weight: 800;
+  line-height: 1.6;
+
+  overflow-wrap: anywhere;
+}
+
+.ba-ficha-nota {
+  margin-top: 19px;
+  padding: 17px;
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  background: var(--surface);
+}
+
+.ba-ficha-nota strong {
+  font-size: .82rem;
+  color: var(--text);
+}
+
+.ba-ficha-nota p {
+  margin: 8px 0 0;
+
+  font-size: .77rem;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.ba-dialogo-pie {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: 21px;
+}
+
+/* =========================================
+   CONTRASTE Y ACCESIBILIDAD
+========================================= */
+
+.ba-pestana:focus-visible,
+.ba-boton:focus-visible,
+.ba-boton-secundario:focus-visible,
+.ba-cerrar:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+:root.high-contrast .ba-pestana.ba-activa,
+:root.high-contrast .ba-boton {
+  background: var(--primary);
+  color: var(--primary-text);
+  border: 2px solid var(--focus);
+}
+
+:root.high-contrast .ba-etiqueta-aprobada {
+  background: var(--primary);
+  color: var(--primary-text);
+  border-color: var(--focus);
+}
+
+/* =========================================
+   DISEÑO RESPONSIVO
+========================================= */
+
+@media (max-width: 768px) {
+
+  .ba-resumen,
+  .ba-ficha-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ba-contenedor,
+  .ba-dialogo-contenido {
+    padding: 20px;
+  }
+
+  .ba-paginacion {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .ba-pestanas {
+    width: 100%;
+  }
+
+  .ba-pestana {
+    min-width: 0;
+    flex: 1;
+    padding: 11px 9px;
+  }
+
+  .ba-pagina-acciones {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ba-encabezado {
+    flex-direction: column;
+  }
+
+  .ba-encabezado button {
+    width: 100%;
+  }
+}
