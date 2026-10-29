@@ -1,127 +1,1078 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#211729">
-  <title>AccesIA | Panel institucional</title>
+  <meta name="theme-color" content="#0e141b">
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/paneles.css">
-  <script src="js/paneles.js" defer></script>
+  <title>AccesIA | Dashboard institucional</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/dashboard-institucion.css">
+  <link rel="stylesheet" href="css/beneficiarios-institucion.css">
+  <script src="js/dashboard-institucion.js" defer></script>
+  <script src="js/beneficiarios-institucion.js" defer></script>
+  <script src="js/beneficiarios-detalle.js" defer></script>
 </head>
 
-<body class="pagina-panel" data-perfil="institucion">
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
+<body>
+  <a href="#contenido" class="skip-link">Saltar al contenido principal</a>
 
-  <div class="estructura-panel">
-    <aside class="menu-lateral" aria-label="Panel institucional">
-      <a class="marca-panel" href="panel-institucion.html"
-         aria-label="Inicio del panel institucional">
-        <img src="img/logo.png" alt="AccesIA">
+  <!-- ICONOS -->
+  <svg class="icon-library" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="ico-grid" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="7" height="7" rx="1"/>
+      <rect x="14" y="3" width="7" height="7" rx="1"/>
+      <rect x="3" y="14" width="7" height="7" rx="1"/>
+      <rect x="14" y="14" width="7" height="7" rx="1"/>
+    </symbol>
+    <symbol id="ico-users" viewBox="0 0 24 24">
+      <circle cx="9" cy="8" r="3"/>
+      <path d="M3 20v-2a6 6 0 0 1 12 0v2M17 5a3 3 0 0 1 0 6m1 4a5 5 0 0 1 3 5"/>
+    </symbol>
+    <symbol id="ico-box" viewBox="0 0 24 24">
+      <rect x="4" y="4" width="16" height="16" rx="3"/>
+      <path d="M8 9h8M8 13h8M8 17h4"/>
+    </symbol>
+    <symbol id="ico-file" viewBox="0 0 24 24">
+      <path d="M6 3h8l5 5v13H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/>
+      <path d="M14 3v6h5M8 14h8M8 18h6"/>
+    </symbol>
+    <symbol id="ico-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="2"/>
+      <path d="M7 3v4M17 3v4M3 10h18"/>
+    </symbol>
+    <symbol id="ico-chart" viewBox="0 0 24 24">
+      <path d="M4 20V11M10 20V5M16 20v-8M22 20V8"/>
+    </symbol>
+    <symbol id="ico-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="ico-credit" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="14" rx="2"/>
+      <path d="M3 10h18"/>
+    </symbol>
+    <symbol id="ico-settings" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="3"/>
+      <path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M19 5l-2 2M7 17l-2 2"/>
+    </symbol>
+    <symbol id="ico-logout" viewBox="0 0 24 24">
+      <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+      <path d="M15 7l5 5-5 5M8 12h12"/>
+    </symbol>
+    <symbol id="ico-arrow" viewBox="0 0 24 24">
+      <path d="M4 12h16m-6-6 6 6-6 6"/>
+    </symbol>
+    <symbol id="ico-volume" viewBox="0 0 24 24">
+      <path d="M11 5 6 9H3v6h3l5 4V5Zm4 4a4 4 0 0 1 0 6m3-9a8 8 0 0 1 0 12"/>
+    </symbol>
+    <symbol id="ico-help" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M9 9a3 3 0 1 1 5 2c-2 1-2 2-2 3m0 3h.01"/>
+    </symbol>
+  </svg>
+
+  <div class="app-layout">
+
+    <!-- MENÚ LATERAL -->
+    <aside class="sidebar" aria-label="Menú institucional">
+
+      <a class="sidebar-brand" href="panel-institucion.html">
+        <img src="img/logo.png" alt="">
+        <span>
+          <strong>Acces<span>IA</span></strong>
+          <small>Servicios de apoyo accesibles</small>
+        </span>
+        <b class="saas-tag">SAAS B2B</b>
       </a>
 
-      <p class="nombre-perfil">Espacio institucional</p>
+      <nav class="sidebar-nav" aria-label="Módulos institucionales">
 
-      <nav id="menu-modulos" class="menu-modulos"
-           aria-label="Navegación institucional">
-        <!-- El JavaScript genera las opciones del menú. -->
+        <button type="button" class="nav-item active"
+                data-view="dashboard" aria-current="page">
+          <svg class="icon"><use href="#ico-grid"/></svg>
+          <span>Dashboard</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="beneficiarios">
+          <svg class="icon"><use href="#ico-users"/></svg>
+          <span>Beneficiarios</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="servicios">
+          <svg class="icon"><use href="#ico-box"/></svg>
+          <span>Servicios</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="personal">
+          <svg class="icon"><use href="#ico-users"/></svg>
+          <span>Personal</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="solicitudes">
+          <svg class="icon"><use href="#ico-file"/></svg>
+          <span>Solicitudes</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="asignaciones">
+          <svg class="icon"><use href="#ico-calendar"/></svg>
+          <span>Asignaciones</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="seguimiento">
+          <svg class="icon"><use href="#ico-clock"/></svg>
+          <span>Seguimiento</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="reportes">
+          <svg class="icon"><use href="#ico-chart"/></svg>
+          <span>Reportes</span>
+        </button>
+
+        <button type="button" class="nav-item"
+                data-view="planes">
+          <svg class="icon"><use href="#ico-credit"/></svg>
+          <span>Planes y suscripciones</span>
+        </button>
+
       </nav>
 
-      <div class="menu-inferior">
-        <button id="ayuda-btn" class="opcion-menu" type="button">
-          <span aria-hidden="true">?</span>
+      <div class="sidebar-bottom">
+        <button type="button" class="nav-item" id="ayuda">
+          <svg class="icon"><use href="#ico-help"/></svg>
           <span>Ayuda</span>
         </button>
 
-        <a class="opcion-menu" href="index.html">
-          <span aria-hidden="true">↪</span>
-          <span>Salir de la demostración</span>
-        </a>
+        <button type="button" class="nav-item logout"
+                id="cerrar-sesion">
+          <svg class="icon"><use href="#ico-logout"/></svg>
+          <span>Cerrar sesión</span>
+        </button>
       </div>
+
     </aside>
 
-    <div class="zona-principal">
-      <header class="barra-superior">
-        <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
-          <button id="texto-btn" type="button" aria-pressed="false">
-            A+ Tamaño de texto
+    <!-- ÁREA PRINCIPAL -->
+    <div class="workspace">
+
+      <!-- CABECERA SUPERIOR -->
+      <header class="topbar">
+
+        <div class="topbar-heading">
+          <h1 id="titulo-superior">Dashboard institucional</h1>
+
+          <p>
+            <span class="topbar-label">Institución:</span>
+            <strong id="institucion-nombre">
+              Cargando información...
+            </strong>
+          </p>
+
+          <p class="ruc-line" id="institucion-ruc"></p>
+        </div>
+
+        <span class="online-badge">
+          <span class="online-dot"></span>
+          Sesión activa
+        </span>
+
+        <nav class="access-tools"
+             aria-label="Opciones de accesibilidad">
+
+          <button type="button" class="access-button"
+                  id="escuchar">
+            <svg class="icon"><use href="#ico-volume"/></svg>
+            Escuchar
           </button>
 
-          <button id="contraste-btn" type="button" aria-pressed="false">
+          <button type="button" class="access-button"
+                  id="pausar">
+            Pausar / Repetir
+          </button>
+
+          <div class="font-control"
+               role="group" aria-label="Tamaño de texto">
+            <button id="menos-texto" type="button"
+                    aria-label="Reducir texto">A−</button>
+            <button id="mas-texto" type="button"
+                    aria-label="Aumentar texto">A+</button>
+          </div>
+
+          <button type="button" class="access-button"
+                  id="contraste" aria-pressed="false">
             ◐ Contraste
           </button>
 
-          <button id="leer-btn" type="button">
-            ▶ Leer página
+          <button type="button" class="access-button"
+                  id="tema">
+            Modo claro
           </button>
+
         </nav>
+
+        <div class="user-card">
+          <span class="avatar" aria-hidden="true">AI</span>
+
+          <span class="user-details">
+            <strong id="usuario-nombre">Cuenta institucional</strong>
+            <small id="usuario-correo">Administrador</small>
+          </span>
+        </div>
+
       </header>
 
-      <main id="contenido" class="contenido-panel" tabindex="-1">
-        <section class="introduccion-panel" aria-labelledby="titulo-panel">
-          <span id="etiqueta-panel" class="etiqueta">
-            Panel institucional
-          </span>
+      <!-- CONTENIDO -->
+      <main id="contenido" class="main-content" tabindex="-1">
 
-          <h1 id="titulo-panel">
-            Gestiona tu institución.<br>
-            <span>Conecta con quienes necesitan apoyo.</span>
-          </h1>
+        <!-- DASHBOARD -->
+        <section id="vista-dashboard" aria-labelledby="bienvenida">
 
-          <p id="descripcion-panel" class="descripcion">
-            Organiza beneficiarios, servicios y solicitudes de atención
-            desde un solo lugar.
-          </p>
-        </section>
+          <div class="welcome-row">
+            <div>
+              <h2 id="bienvenida">
+                Bienvenido al panel de tu institución
+              </h2>
 
-        <section id="vista-modulo" class="superficie-panel"
-                 aria-labelledby="titulo-vista">
-          <h2 id="titulo-vista">Bienvenido al panel institucional</h2>
-          <p class="texto-panel">
-            Selecciona una opción del menú lateral para comenzar.
-          </p>
+              <p>
+                Gestiona la atención inclusiva, consulta tus
+                solicitudes y coordina servicios de apoyo.
+              </p>
+            </div>
 
-          <div class="pasos-panel">
-            <article class="paso-panel">
-              <span class="numero-paso" aria-hidden="true">1</span>
-              <h3>Organiza tus servicios</h3>
-              <p>Configura los servicios de apoyo de tu institución.</p>
+            <div class="quick-actions">
+              <button type="button" class="quick-primary"
+                      data-view="beneficiarios">
+                + Registrar beneficiario
+              </button>
+
+              <button type="button" class="quick-secondary"
+                      data-view="servicios">
+                + Crear servicio
+              </button>
+
+              <button type="button" class="quick-secondary"
+                      data-view="solicitudes">
+                Revisar solicitudes
+              </button>
+            </div>
+          </div>
+
+          <!-- TARJETAS DE INDICADORES -->
+          <div class="metrics">
+
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>COMUNIDAD ACTIVA</span>
+                <span class="metric-tag">Beneficiarios</span>
+              </div>
+
+              <h3>Beneficiarios registrados</h3>
+              <strong class="metric-number">—</strong>
+
+              <p>
+                Indicador pendiente de conexión al módulo
+                de beneficiarios.
+              </p>
+
+              <button type="button" class="metric-link"
+                      data-view="beneficiarios">
+                Ver detalles
+                <svg class="icon"><use href="#ico-arrow"/></svg>
+              </button>
             </article>
 
-            <article class="paso-panel">
-              <span class="numero-paso" aria-hidden="true">2</span>
-              <h3>Revisa las solicitudes</h3>
-              <p>Consulta las necesidades de quienes solicitan asistencia.</p>
+            <article class="metric-card">
+              <div class="metric-top">
+                <span class="warning-text">ATENCIÓN PRIORITARIA</span>
+                <span class="metric-tag warning-tag">Pendiente</span>
+              </div>
+
+              <h3>Solicitudes pendientes</h3>
+              <strong class="metric-number">—</strong>
+
+              <p>
+                Se mostrará la cantidad de solicitudes
+                cuando el módulo esté conectado.
+              </p>
+
+              <button type="button" class="metric-link"
+                      data-view="solicitudes">
+                Ver detalles
+                <svg class="icon"><use href="#ico-arrow"/></svg>
+              </button>
             </article>
 
-            <article class="paso-panel">
-              <span class="numero-paso" aria-hidden="true">3</span>
-              <h3>Da seguimiento</h3>
-              <p>Acompaña el avance de las atenciones desde un solo lugar.</p>
+            <article class="metric-card">
+              <div class="metric-top">
+                <span class="success-text">CAPACIDAD OPERATIVA</span>
+                <span class="metric-tag">Servicios</span>
+              </div>
+
+              <h3>Servicios activos</h3>
+              <strong class="metric-number">—</strong>
+
+              <p>
+                Próximamente se mostrarán los servicios
+                habilitados por tu institución.
+              </p>
+
+              <button type="button" class="metric-link"
+                      data-view="servicios">
+                Ver detalles
+                <svg class="icon"><use href="#ico-arrow"/></svg>
+              </button>
             </article>
+
+            <article class="metric-card">
+              <div class="metric-top">
+                <span>IMPACTO ACUMULADO</span>
+                <span class="metric-tag">Atenciones</span>
+              </div>
+
+              <h3>Atenciones finalizadas</h3>
+              <strong class="metric-number">—</strong>
+
+              <p>
+                Indicador disponible después de integrar
+                el seguimiento de atenciones.
+              </p>
+
+              <button type="button" class="metric-link"
+                      data-view="seguimiento">
+                Ver detalles
+                <svg class="icon"><use href="#ico-arrow"/></svg>
+              </button>
+            </article>
+
+          </div>
+
+          <!-- CONTENIDO INFERIOR -->
+          <div class="dashboard-bottom">
+
+            <section class="content-card requests-card"
+                     aria-labelledby="titulo-solicitudes">
+
+              <div class="card-heading">
+                <div>
+                  <h3 id="titulo-solicitudes">
+                    <svg class="icon"><use href="#ico-file"/></svg>
+                    Solicitudes recientes
+                  </h3>
+
+                  <p>
+                    Últimos requerimientos de apoyo recibidos.
+                  </p>
+                </div>
+
+                <button type="button" class="small-button"
+                        data-view="solicitudes">
+                  Ver todas las solicitudes →
+                </button>
+              </div>
+
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th scope="col">Código</th>
+                      <th scope="col">Beneficiario</th>
+                      <th scope="col">Servicio solicitado</th>
+                      <th scope="col">Fecha</th>
+                      <th scope="col">Estado</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    <tr>
+                      <td colspan="5" class="empty-table">
+                        <strong>Solicitudes no disponibles todavía</strong>
+                        <p>
+                          Aquí aparecerán las solicitudes reales
+                          cuando conectemos este módulo con MySQL.
+                        </p>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="card-footnote">
+                <span>Información institucional</span>
+                <span>Datos reales, sin valores simulados</span>
+              </div>
+
+            </section>
+
+            <section class="content-card attention-card"
+                     aria-labelledby="titulo-atenciones">
+
+              <div class="card-heading">
+                <div>
+                  <h3 id="titulo-atenciones">
+                    <svg class="icon"><use href="#ico-calendar"/></svg>
+                    Próximas atenciones
+                  </h3>
+
+                  <p>Programación de los servicios de apoyo.</p>
+                </div>
+              </div>
+
+              <div class="attention-empty">
+                <div class="empty-icon">
+                  <svg class="icon"><use href="#ico-calendar"/></svg>
+                </div>
+
+                <h4>Agenda pendiente de integración</h4>
+
+                <p>
+                  Las próximas atenciones se visualizarán
+                  cuando implementemos las asignaciones
+                  y su programación.
+                </p>
+
+                <button type="button" class="small-button"
+                        data-view="asignaciones">
+                  Ir a asignaciones →
+                </button>
+              </div>
+
+            </section>
+
           </div>
         </section>
+
+
+        
+<!-- ==========================================
+     MÓDULO DE GESTIÓN DE BENEFICIARIOS
+=========================================== -->
+<section id="vista-beneficiarios" hidden
+         aria-labelledby="benef-titulo">
+
+  <!-- PRESENTACIÓN -->
+  <div class="benef-hero">
+
+    <div class="benef-hero-top">
+      <span class="benef-eyebrow">▣ PADRÓN CENTRAL</span>
+      <span class="benef-subtitle-tag">
+        Gestión institucional
+      </span>
+    </div>
+
+    <h2 id="benef-titulo">Beneficiarios</h2>
+
+    <p>
+      Gestiona el padrón institucional de personas con
+      discapacidad visual, sus perfiles de accesibilidad
+      y requerimientos de apoyo.
+    </p>
+
+    <div class="benef-hero-actions">
+      <button type="button" class="benef-btn benef-btn-outline"
+              id="benef-exportar" disabled
+              title="Disponible cuando conectemos los registros a MySQL">
+        ↓ Exportar padrón
+      </button>
+
+      <button type="button" class="benef-btn benef-btn-primary"
+              id="benef-abrir-registro">
+        + Registrar beneficiario
+      </button>
+    </div>
+
+  </div>
+
+  <!-- TARJETAS DE INDICADORES -->
+  <div class="benef-stats">
+
+    <article class="benef-stat-card">
+      <div class="benef-stat-header">
+        <span>Total registrados</span>
+        <span aria-hidden="true">♙</span>
+      </div>
+      <strong class="benef-stat-value">—</strong>
+      <p>Padrón pendiente de conexión</p>
+    </article>
+
+    <article class="benef-stat-card">
+      <div class="benef-stat-header">
+        <span>Atención activa</span>
+        <span aria-hidden="true">✓</span>
+      </div>
+      <strong class="benef-stat-value">—</strong>
+      <p>Beneficiarios con estado activo</p>
+    </article>
+
+    <article class="benef-stat-card">
+      <div class="benef-stat-header">
+        <span>En evaluación</span>
+        <span aria-hidden="true">◷</span>
+      </div>
+      <strong class="benef-stat-value">—</strong>
+      <p>Pendientes de valoración</p>
+    </article>
+
+    <article class="benef-stat-card">
+      <div class="benef-stat-header">
+        <span>Lectores de pantalla</span>
+        <span aria-hidden="true">▣</span>
+      </div>
+      <strong class="benef-stat-value">—</strong>
+      <p>NVDA, JAWS, TalkBack y otros</p>
+    </article>
+
+  </div>
+
+  <!-- FILTROS -->
+  <section class="benef-filter-card"
+           aria-labelledby="benef-filtros-titulo">
+
+    <div class="benef-section-heading">
+      <h3 id="benef-filtros-titulo">
+        Filtros y búsqueda de beneficiarios
+      </h3>
+      <span class="benef-caption">
+        Consulta del padrón institucional
+      </span>
+    </div>
+
+    <div class="benef-filters">
+
+      <div class="benef-field">
+        <label for="benef-buscar">
+          Buscar beneficiario
+        </label>
+
+        <input type="search"
+               id="benef-buscar"
+               placeholder="Nombre, apellidos o documento"
+               autocomplete="off">
+      </div>
+
+      <div class="benef-field">
+        <label for="benef-estado">
+          Estado del beneficiario
+        </label>
+
+        <select id="benef-estado">
+          <option value="">Todos los estados</option>
+          <option value="ACTIVO">Activo</option>
+          <option value="EN_EVALUACION">En evaluación</option>
+          <option value="INACTIVO">Inactivo</option>
+        </select>
+      </div>
+
+      <div class="benef-field">
+        <label for="benef-condicion">
+          Tipo de condición visual
+        </label>
+
+        <select id="benef-condicion">
+          <option value="">Todos los tipos</option>
+          <option value="CEGUERA_TOTAL">Ceguera total</option>
+          <option value="BAJA_VISION_MODERADA">
+            Baja visión moderada
+          </option>
+          <option value="BAJA_VISION_SEVERA">
+            Baja visión severa
+          </option>
+          <option value="SORDOCEGUERA">
+            Sordoceguera
+          </option>
+          <option value="VISION_TUBULAR">
+            Visión tubular
+          </option>
+        </select>
+      </div>
+
+      <button type="button"
+              id="benef-limpiar"
+              class="benef-btn benef-clear">
+        Limpiar filtros
+      </button>
+
+    </div>
+
+    <div class="benef-filter-summary" aria-live="polite">
+      <span id="benef-resultado-filtro">
+        Padrón pendiente de conexión
+      </span>
+      <span id="benef-filtros-activos">
+        Filtro activo: ninguno
+      </span>
+    </div>
+
+  </section>
+
+  <!-- LISTADO -->
+  <section class="benef-table-card"
+           aria-labelledby="benef-tabla-titulo">
+
+    <div class="benef-table-heading">
+      <div>
+        <h3 id="benef-tabla-titulo">
+          Listado detallado de beneficiarios
+        </h3>
+        <p>
+          Información correspondiente a la institución
+          que ha iniciado sesión.
+        </p>
+      </div>
+
+      <span class="benef-table-state">
+        Sin datos cargados
+      </span>
+    </div>
+
+    <div class="benef-table-scroll">
+      <table class="benef-table">
+
+        <thead>
+          <tr>
+            <th scope="col">Documento</th>
+            <th scope="col">Nombre completo</th>
+            <th scope="col">Condición visual</th>
+            <th scope="col">Teléfono</th>
+            <th scope="col">Fecha de registro</th>
+            <th scope="col">Estado</th>
+            <th scope="col">Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody id="benef-tabla-cuerpo">
+          <tr>
+            <td colspan="7" class="benef-empty">
+
+              <div class="benef-empty-icon" aria-hidden="true">
+                ♙
+              </div>
+
+              <strong>
+                El padrón institucional todavía no está conectado
+              </strong>
+
+              <p>
+                Cuando implementemos la API de beneficiarios,
+                aquí aparecerán los registros reales de
+                tu institución.
+              </p>
+
+            </td>
+          </tr>
+        </tbody>
+
+      </table>
+    </div>
+
+    <div class="benef-pagination">
+      <span>
+        Sin registros consultados
+      </span>
+
+      <div>
+        <button type="button" disabled>← Anterior</button>
+        <span>Página —</span>
+        <button type="button" disabled>Siguiente →</button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- FORMULARIO MODAL -->
+  <dialog id="benef-dialog"
+          class="benef-dialog"
+          aria-labelledby="benef-dialog-titulo"
+          aria-describedby="benef-dialog-descripcion">
+
+    <div class="benef-dialog-header">
+      <div>
+        <span class="benef-eyebrow">
+          NUEVO REGISTRO
+        </span>
+
+        <h2 id="benef-dialog-titulo">
+          Registrar beneficiario
+        </h2>
+
+        <p id="benef-dialog-descripcion">
+          Completa los datos personales y requerimientos
+          de accesibilidad.
+        </p>
+      </div>
+
+      <button type="button"
+              class="benef-close"
+              id="benef-cerrar"
+              aria-label="Cerrar formulario">
+        ✕
+      </button>
+    </div>
+
+    
+<div class="benef-modal-note" role="note">
+  <strong>Registro institucional seguro.</strong>
+  Los datos serán asociados automáticamente
+  a la institución con la que has iniciado sesión.
+  Comprueba la información antes de registrarla.
+</div>
+
+
+    <form id="benef-form">
+
+      <!-- IDENTIFICACIÓN -->
+      <fieldset class="benef-fieldset">
+        <legend>1. Identificación oficial</legend>
+
+        <div class="benef-form-grid">
+
+          <div class="benef-field">
+            <label for="benef-tipo-documento">
+              Tipo de documento *
+            </label>
+
+            <select id="benef-tipo-documento" required>
+              <option value="">Seleccionar</option>
+              <option value="DNI">DNI</option>
+              <option value="CE">Carné de extranjería</option>
+              <option value="PASAPORTE">Pasaporte</option>
+              <option value="CONADIS">Carné CONADIS</option>
+            </select>
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-documento">
+              Número de documento *
+            </label>
+
+            <input id="benef-documento"
+                   type="text"
+                   maxlength="20"
+                   required
+                   placeholder="Número de identificación">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-nombres">Nombres *</label>
+            <input id="benef-nombres"
+                   type="text"
+                   autocomplete="given-name"
+                   required>
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-apellidos">Apellidos *</label>
+            <input id="benef-apellidos"
+                   type="text"
+                   autocomplete="family-name"
+                   required>
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-nacimiento">
+              Fecha de nacimiento
+            </label>
+
+            <input id="benef-nacimiento"
+                   type="date">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-sede">
+              Sede institucional
+            </label>
+
+            <input id="benef-sede"
+                   type="text"
+                   placeholder="Ej. Sede Chincha">
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- ACCESIBILIDAD -->
+      <fieldset class="benef-fieldset">
+        <legend>2. Perfil de discapacidad y accesibilidad</legend>
+
+        <div class="benef-form-grid">
+
+          <div class="benef-field benef-full">
+            <label for="benef-visual">
+              Tipo de condición visual *
+            </label>
+
+            <select id="benef-visual" required>
+              <option value="">Seleccionar condición</option>
+              <option value="CEGUERA_TOTAL">Ceguera total</option>
+              <option value="BAJA_VISION_SEVERA">
+                Baja visión severa
+              </option>
+              <option value="BAJA_VISION_MODERADA">
+                Baja visión moderada
+              </option>
+              <option value="VISION_TUBULAR">
+                Visión tubular
+              </option>
+              <option value="SORDOCEGUERA">
+                Sordoceguera
+              </option>
+              <option value="OTRA">Otra</option>
+            </select>
+          </div>
+
+          <div class="benef-field benef-full">
+            <label for="benef-tecnologia">
+              Tecnología de asistencia utilizada
+            </label>
+
+            <input id="benef-tecnologia"
+                   type="text"
+                   placeholder="Ej. NVDA, JAWS, TalkBack, braille">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-comunicacion">
+              Preferencia de comunicación
+            </label>
+
+            <select id="benef-comunicacion">
+              <option value="">Seleccionar</option>
+              <option value="VOZ">Voz</option>
+              <option value="TEXTO">Texto accesible</option>
+              <option value="AUDIO">Audio</option>
+              <option value="BRAILLE">Braille</option>
+              <option value="OTRO">Otro</option>
+            </select>
+          </div>
+
+          <label class="benef-check">
+            <input id="benef-lector"
+                   type="checkbox">
+            <span>Requiere lector de pantalla</span>
+          </label>
+
+          <div class="benef-field benef-full">
+            <label for="benef-observaciones">
+              Observaciones y adaptaciones prioritarias
+            </label>
+
+            <textarea id="benef-observaciones"
+                      rows="3"
+                      placeholder="Necesidades de apoyo relevantes"></textarea>
+          </div>
+
+        </div>
+      </fieldset>
+
+      <!-- CONTACTO -->
+      <fieldset class="benef-fieldset">
+        <legend>3. Contacto y soporte</legend>
+
+        <div class="benef-form-grid">
+
+          <div class="benef-field">
+            <label for="benef-telefono">
+              Teléfono o WhatsApp
+            </label>
+
+            <input id="benef-telefono"
+                   type="tel"
+                   autocomplete="tel"
+                   placeholder="Número de contacto">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-correo">
+              Correo electrónico
+            </label>
+
+            <input id="benef-correo"
+                   type="email"
+                   autocomplete="email"
+                   placeholder="correo@ejemplo.com">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-emergencia">
+              Contacto de emergencia o tutor
+            </label>
+
+            <input id="benef-emergencia"
+                   type="text"
+                   placeholder="Nombre del contacto">
+          </div>
+
+          <div class="benef-field">
+            <label for="benef-tel-emergencia">
+              Teléfono de emergencia
+            </label>
+
+            <input id="benef-tel-emergencia"
+                   type="tel"
+                   placeholder="Número de emergencia">
+          </div>
+
+        </div>
+      </fieldset>
+
+      <p id="benef-mensaje"
+         class="benef-form-message"
+         role="status"
+         aria-live="polite"
+         hidden></p>
+
+      <div class="benef-dialog-actions">
+        <button type="button"
+                id="benef-cancelar"
+                class="benef-btn benef-btn-outline">
+          Cancelar
+        </button>
+
+        <button type="submit"
+                class="benef-btn benef-btn-primary">
+          Revisar datos
+        </button>
+      </div>
+
+    </form>
+  </dialog>
+
+  
+<!-- ======================================
+     VENTANA VER FICHA DEL BENEFICIARIO
+======================================= -->
+
+<dialog id="benef-detalle-dialog"
+        class="benef-dialog benef-detalle-dialog"
+        aria-labelledby="benef-detalle-titulo">
+
+  <div class="benef-dialog-header">
+
+    <div>
+      <span class="benef-eyebrow">
+        EXPEDIENTE INSTITUCIONAL
+      </span>
+
+      <h2 id="benef-detalle-titulo">
+        Ficha del beneficiario
+      </h2>
+
+      <p>
+        Información registrada en AccesIA.
+      </p>
+    </div>
+
+    <button type="button"
+            class="benef-close"
+            id="benef-detalle-cerrar-x"
+            aria-label="Cerrar ficha">
+      ✕
+    </button>
+
+  </div>
+
+  <div id="benef-detalle-contenido"
+       class="benef-detalle-contenido"
+       aria-live="polite">
+    Cargando ficha...
+  </div>
+
+  <div class="benef-dialog-actions">
+
+    <button type="button"
+            class="benef-btn benef-btn-outline"
+            id="benef-detalle-cerrar">
+      Cerrar ficha
+    </button>
+
+  </div>
+
+</dialog>
+
+
+</section>
+
+
+        <!-- VISTA DE MÓDULOS FUTUROS -->
+        <section id="vista-modulo" hidden
+                 aria-labelledby="titulo-modulo">
+
+          <div class="module-header">
+            <span class="section-eyebrow">MÓDULO INSTITUCIONAL</span>
+            <h2 id="titulo-modulo"></h2>
+            <p id="descripcion-modulo"></p>
+          </div>
+
+          <div class="module-placeholder">
+            <div class="empty-icon">
+              <svg class="icon"><use href="#ico-settings"/></svg>
+            </div>
+
+            <h3>Este módulo está en desarrollo</h3>
+
+            <p>
+              La estructura del dashboard ya está preparada.
+              Implementaremos los datos y las operaciones
+              de este módulo en las siguientes etapas.
+            </p>
+
+            <button type="button" class="quick-primary"
+                    data-view="dashboard">
+              Volver al dashboard
+            </button>
+          </div>
+        </section>
+
       </main>
 
-      <footer class="footer-panel">
-        <p>AccesIA · Servicios de apoyo accesibles</p>
-        <p>Modo demostración · Sin conexión a cuentas reales.</p>
+      <footer class="dashboard-footer">
+        <span>
+          <strong>AccesIA Institucional</strong>
+          · Plataforma SaaS de inclusión y accesibilidad
+        </span>
+
+        <span>
+          Servicios de apoyo accesibles
+        </span>
       </footer>
+
     </div>
   </div>
 
-  <p id="estado" class="solo-lector"
-     role="status" aria-live="polite"></p>
+  <p id="estado-accesible"
+     class="sr-only"
+     role="status"
+     aria-live="polite"></p>
 
-  <dialog id="dialogo" aria-labelledby="dialogo-titulo"
-          aria-describedby="dialogo-texto">
-    <h2 id="dialogo-titulo">Ayuda</h2>
-    <p id="dialogo-texto"></p>
-    <button id="cerrar-dialogo" class="boton-principal"
-            type="button" autofocus>
-      Volver al panel
-    </button>
+  <!-- AYUDA -->
+  <dialog id="dialogo-ayuda" aria-labelledby="titulo-ayuda">
+    <h2 id="titulo-ayuda">Ayuda del panel institucional</h2>
+
+    <p>
+      Utiliza el menú lateral para desplazarte entre módulos.
+      Puedes cambiar entre modo claro y oscuro,
+      aumentar el texto o activar el alto contraste.
+      Las funciones que todavía no están conectadas
+      se indican como pendientes de implementación.
+    </p>
+
+    <form method="dialog">
+      <button type="submit" class="quick-primary">
+        Entendido
+      </button>
+    </form>
   </dialog>
+
 </body>
 </html>

@@ -1,0 +1,856 @@
+
+/* =========================================
+   ACCESIA - GESTIÓN DE BENEFICIARIOS
+   DASHBOARD INSTITUCIONAL
+   DISEÑO CLARO / OSCURO
+========================================= */
+
+/* =========================================
+   1. CABECERA DEL MÓDULO
+========================================= */
+
+.benef-hero {
+  padding: 28px;
+  background: var(--header);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  margin-bottom: 22px;
+}
+
+.benef-hero-top {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 11px;
+}
+
+.benef-eyebrow {
+  display: inline-block;
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+}
+
+.benef-subtitle-tag {
+  padding: 5px 10px;
+  background: var(--surface);
+  color: var(--muted);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  font-size: 0.69rem;
+}
+
+.benef-hero h2 {
+  margin: 13px 0 8px;
+  font-size: clamp(1.6rem, 2.5vw, 2.25rem);
+  letter-spacing: -0.05em;
+}
+
+.benef-hero > p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.87rem;
+  line-height: 1.8;
+}
+
+.benef-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 23px;
+}
+
+/* =========================================
+   2. BOTONES PRINCIPALES
+========================================= */
+
+.benef-btn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  border-radius: 10px;
+  padding: 11px 17px;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.benef-btn-primary {
+  background: var(--primary);
+  color: var(--primary-text);
+  border: 1px solid var(--primary);
+}
+
+.benef-btn-outline {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.benef-btn:not(:disabled):hover {
+  filter: brightness(1.09);
+}
+
+.benef-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   3. TARJETAS DE INDICADORES
+========================================= */
+
+.benef-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+  margin-bottom: 23px;
+}
+
+.benef-stat-card {
+  min-width: 0;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  padding: 19px;
+}
+
+.benef-stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 0.77rem;
+  font-weight: 700;
+}
+
+.benef-stat-header > span:last-child {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  color: var(--accent);
+  border-radius: 10px;
+  background: var(--surface);
+  font-size: 1.15rem;
+}
+
+.benef-stat-value {
+  display: block;
+  margin: 9px 0;
+  font-size: 2.05rem;
+  font-weight: 800;
+  line-height: 1.15;
+}
+
+.benef-stat-card p {
+  color: var(--accent);
+  font-size: 0.7rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* =========================================
+   4. CONTENEDORES
+========================================= */
+
+.benef-filter-card,
+.benef-table-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--header);
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.benef-filter-card {
+  padding: 21px;
+}
+
+/* =========================================
+   5. ENCABEZADO DE FILTROS
+========================================= */
+
+.benef-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.benef-section-heading h3 {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.benef-caption {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+/* =========================================
+   6. FILTROS
+========================================= */
+
+.benef-filters {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1.15fr auto;
+  gap: 13px;
+  align-items: end;
+}
+
+.benef-field {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  gap: 8px;
+}
+
+.benef-field label {
+  font-size: 0.76rem;
+  line-height: 1.5;
+  font-weight: 750;
+}
+
+.benef-field input,
+.benef-field select,
+.benef-field textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 11px 12px;
+
+  background: var(--bg);
+  color: var(--text);
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  font-size: 0.81rem;
+}
+
+.benef-field textarea {
+  min-height: 95px;
+  resize: vertical;
+}
+
+.benef-field input::placeholder,
+.benef-field textarea::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+.benef-field input:focus,
+.benef-field select:focus,
+.benef-field textarea:focus {
+  border-color: var(--accent);
+}
+
+.benef-clear {
+  white-space: nowrap;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.benef-filter-summary {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  font-size: 0.72rem;
+  line-height: 1.7;
+}
+
+.benef-filter-summary span:last-child {
+  color: var(--muted);
+}
+
+/* =========================================
+   7. TABLA DE BENEFICIARIOS
+========================================= */
+
+.benef-table-heading {
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.benef-table-heading h3 {
+  font-size: 0.99rem;
+  margin: 0 0 7px;
+}
+
+.benef-table-heading p {
+  margin: 0;
+  font-size: 0.73rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.benef-table-state {
+  padding: 7px 11px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  color: var(--muted);
+  font-size: 0.68rem;
+  font-weight: 750;
+}
+
+.benef-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.benef-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 0.74rem;
+}
+
+.benef-table thead {
+  background: var(--surface);
+}
+
+.benef-table th {
+  text-align: left;
+  padding: 16px 12px;
+
+  color: var(--text);
+  font-size: 0.7rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+  border-bottom: 1px solid var(--border);
+}
+
+.benef-table td {
+  padding: 15px 12px;
+  border-bottom: 1px solid var(--border);
+}
+
+.benef-table tbody tr:hover {
+  background: var(--surface);
+}
+
+/* =========================================
+   8. TABLA SIN REGISTROS
+========================================= */
+
+.benef-empty {
+  text-align: center;
+  padding: 64px 20px !important;
+  color: var(--muted);
+  line-height: 1.8;
+}
+
+.benef-empty-icon {
+  width: 60px;
+  height: 60px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 15px;
+  border: 1px solid var(--border);
+
+  background: var(--surface);
+  color: var(--accent);
+
+  font-size: 1.75rem;
+  margin: 0 auto 16px;
+}
+
+.benef-empty strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text);
+}
+
+.benef-empty p {
+  max-width: 440px;
+  margin: 10px auto 0;
+  font-size: 0.76rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   9. PAGINACIÓN
+========================================= */
+
+.benef-pagination {
+  padding: 15px 20px;
+  background: var(--surface);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.benef-pagination > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.benef-pagination button {
+  padding: 9px 12px;
+  border-radius: 7px;
+  border: 1px solid var(--border);
+
+  background: var(--card);
+  color: var(--text);
+
+  font-size: 0.7rem;
+}
+
+.benef-pagination button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* =========================================
+   10. FORMULARIO MODAL
+========================================= */
+
+.benef-dialog {
+  width: min(95vw, 850px);
+  max-width: 850px;
+  max-height: 90vh;
+
+  overflow-y: auto;
+  padding: 0;
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  background: var(--card);
+  color: var(--text);
+
+  box-shadow: 0 30px 90px #0008;
+}
+
+.benef-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+}
+
+.benef-dialog-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  padding: 23px 26px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
+.benef-dialog-header h2 {
+  font-size: 1.35rem;
+  margin: 8px 0 6px;
+}
+
+.benef-dialog-header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.77rem;
+  line-height: 1.7;
+}
+
+.benef-close {
+  width: 39px;
+  height: 39px;
+  flex-shrink: 0;
+
+  border: 1px solid var(--border);
+  background: var(--surface);
+
+  border-radius: 10px;
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+.benef-close:hover {
+  color: var(--accent);
+}
+
+/* =========================================
+   11. AVISOS DEL FORMULARIO
+========================================= */
+
+.benef-modal-note {
+  margin: 20px 26px 0;
+  padding: 14px;
+
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: 9px;
+
+  background: var(--surface);
+  color: var(--muted);
+
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+.benef-modal-note strong {
+  color: var(--text);
+}
+
+.benef-form-message {
+  margin: 22px 26px 0;
+  padding: 13px;
+
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 10px;
+
+  color: var(--text);
+  font-size: 0.79rem;
+  line-height: 1.8;
+}
+
+/* =========================================
+   12. SECCIONES DEL FORMULARIO
+========================================= */
+
+.benef-fieldset {
+  min-width: 0;
+  margin: 23px 26px 0;
+  padding: 0;
+  border: 0;
+}
+
+.benef-fieldset legend {
+  width: 100%;
+  padding: 0 0 13px;
+  margin-bottom: 15px;
+
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+  font-size: 0.94rem;
+  font-weight: 800;
+}
+
+.benef-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.benef-full {
+  grid-column: 1 / -1;
+}
+
+.benef-check {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  align-self: end;
+  min-height: 44px;
+
+  font-size: 0.78rem;
+  font-weight: 750;
+  color: var(--text);
+}
+
+.benef-check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+}
+
+/* =========================================
+   13. BOTONES DEL FORMULARIO
+========================================= */
+
+.benef-dialog-actions {
+  padding: 20px 26px;
+  margin-top: 25px;
+
+  border-top: 1px solid var(--border);
+
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  background: var(--card);
+}
+
+/* =========================================
+   14. ACCIONES DE LA TABLA
+========================================= */
+
+.benef-acciones {
+  white-space: nowrap;
+}
+
+.benef-ver-ficha,
+.benef-editar-ficha {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 38px;
+  padding: 9px 15px;
+
+  border-radius: 9px;
+
+  font-size: 0.75rem;
+  font-weight: 800;
+
+  white-space: nowrap;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+/* VER FICHA */
+
+.benef-ver-ficha {
+  background: var(--surface);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.benef-ver-ficha:hover {
+  background: var(--accent);
+  color: var(--primary-text);
+}
+
+/* EDITAR FICHA */
+
+.benef-editar-ficha {
+  margin-left: 8px;
+
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.benef-editar-ficha:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.benef-ver-ficha:disabled,
+.benef-editar-ficha:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* =========================================
+   15. VENTANA VER FICHA
+========================================= */
+
+.benef-detalle-dialog {
+  width: min(95vw, 800px);
+  max-height: 90vh;
+
+  overflow-y: auto;
+  border-radius: 16px;
+}
+
+.benef-detalle-contenido {
+  padding: 25px;
+  color: var(--text);
+}
+
+/* =========================================
+   16. CUADRÍCULA DEL EXPEDIENTE
+========================================= */
+
+.benef-detalle-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 14px;
+  margin: 0;
+}
+
+.benef-detalle-campo {
+  min-width: 0;
+  padding: 16px;
+
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+
+.benef-detalle-campo dt {
+  margin-bottom: 9px;
+
+  font-size: 0.72rem;
+  font-weight: 700;
+
+  color: var(--muted);
+}
+
+.benef-detalle-campo dd {
+  margin: 0;
+
+  font-size: 0.85rem;
+  font-weight: 800;
+  line-height: 1.6;
+
+  color: var(--text);
+
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+/* =========================================
+   17. PANTALLAS MEDIANAS
+========================================= */
+
+@media (max-width: 1300px) {
+
+  .benef-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .benef-filters {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .benef-clear {
+    width: fit-content;
+  }
+}
+
+/* =========================================
+   18. PANTALLAS PEQUEÑAS
+========================================= */
+
+@media (max-width: 620px) {
+
+  .benef-hero {
+    padding: 20px;
+  }
+
+  .benef-stats,
+  .benef-filters,
+  .benef-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benef-full {
+    grid-column: auto;
+  }
+
+  .benef-hero-actions,
+  .benef-dialog-actions {
+    flex-direction: column;
+  }
+
+  .benef-hero-actions .benef-btn,
+  .benef-dialog-actions .benef-btn {
+    width: 100%;
+  }
+
+  .benef-filter-card {
+    padding: 15px;
+  }
+
+  .benef-dialog-header {
+    padding: 18px;
+  }
+
+  .benef-modal-note {
+    margin: 17px 18px 0;
+  }
+
+  .benef-fieldset {
+    margin: 22px 18px 0;
+  }
+
+  .benef-form-message {
+    margin: 20px 18px 0;
+  }
+
+  .benef-dialog-actions {
+    padding: 18px;
+  }
+
+  .benef-detalle-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .benef-detalle-contenido {
+    padding: 16px;
+  }
+
+  .benef-detalle-campo {
+    padding: 14px;
+  }
+
+  .benef-acciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .benef-editar-ficha {
+    margin-left: 0;
+  }
+}
+
+/* =========================================
+   19. ACCESIBILIDAD
+========================================= */
+
+.benef-ver-ficha:focus-visible,
+.benef-editar-ficha:focus-visible,
+.benef-btn:focus-visible,
+.benef-close:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .benef-ver-ficha,
+  .benef-editar-ficha {
+    transition: none;
+  }
+}

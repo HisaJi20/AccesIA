@@ -1,134 +1,690 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#211729">
-  <title>AccesIA | Registrar institución</title>
-  <link rel="stylesheet" href="css/style.css">
-  <script src="js/registro.js" defer></script>
+  <meta name="theme-color" content="#0e141b">
+
+  <title>AccesIA | Registro de institución</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/login-institucion.css">
+  <link rel="stylesheet" href="css/registro-institucion.css">
+
+  <script src="js/registro-institucion.js" defer></script>
 </head>
-<body>
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <header class="cabecera">
-    <a class="marca" href="index.html" aria-label="Volver al inicio">
-      <img src="img/logo.png" alt="AccesIA" class="logo">
-    </a>
+<body class="register-page">
 
-    <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
-      <button id="texto-btn" type="button" aria-pressed="false">
-        A+ Tamaño de texto
-      </button>
-      <button id="contraste-btn" type="button" aria-pressed="false">
-        ◐ Contraste
-      </button>
-      <button id="leer-btn" type="button">▶ Leer página</button>
-    </nav>
-  </header>
+  <a class="skip-link" href="#formulario">
+    Saltar al formulario
+  </a>
 
-  <main id="contenido" class="contenido">
-    <section class="panel panel-login" aria-labelledby="titulo-registro">
-      <a class="enlace-volver" href="index.html">← Volver al inicio</a>
+  <div class="background-art" aria-hidden="true"></div>
 
-      <div class="presentacion">
-        <span class="etiqueta">Registro institucional</span>
-        <h1 id="titulo-registro">Conecta tu institución</h1>
-        <p class="descripcion">
-          Completa los datos para comenzar a organizar tus servicios de apoyo.
-        </p>
-      </div>
+  <!-- CABECERA INSTITUCIONAL -->
+  <header class="site-header">
+    <div class="header-inner">
 
-      <form id="registro-form" class="formulario-login">
-        <div class="campo">
-          <label for="institucion">Nombre de la institución</label>
-          <input id="institucion" name="institucion" type="text"
-                 autocomplete="organization" maxlength="150" required>
-        </div>
+      <a href="index.html" class="reg-brand"
+         aria-label="AccesIA, volver al inicio">
+        <img src="img/logo.png" alt="">
 
-        <div class="campo">
-          <label for="tipo">Tipo de institución</label>
-          <select id="tipo" name="tipo" required>
-            <option value="">Selecciona una opción</option>
-            <option value="municipalidad">Municipalidad</option>
-            <option value="ong">ONG</option>
-            <option value="universidad">Universidad</option>
-            <option value="centro">Centro de apoyo</option>
-            <option value="otra">Otra institución</option>
-          </select>
-        </div>
+        <span class="reg-brand-info">
+          <span class="reg-brand-name">
+            Acces<span>IA</span>
+            <small>Institucional</small>
+          </span>
 
-        <div class="campo">
-          <label for="responsable">Nombre del responsable</label>
-          <input id="responsable" name="responsable" type="text"
-                 autocomplete="name" maxlength="120" required>
-        </div>
+          <span class="reg-brand-description">
+            Servicios de apoyo accesibles,
+            conectados e inteligentes
+          </span>
+        </span>
+      </a>
 
-        <div class="campo">
-          <label for="correo">Correo electrónico institucional</label>
-          <input id="correo" name="correo" type="email"
-                 autocomplete="username" maxlength="254" required>
-        </div>
+      <nav class="access-tools"
+           aria-label="Opciones de accesibilidad">
 
-        <div class="campo">
-          <label for="telefono">Teléfono de contacto (opcional)</label>
-          <input id="telefono" name="telefono" type="tel"
-                 autocomplete="tel" maxlength="30">
-        </div>
-
-        <div class="campo">
-          <label for="clave">Contraseña</label>
-          <div class="entrada-clave">
-            <input id="clave" name="clave" type="password"
-                   autocomplete="new-password" minlength="8"
-                   aria-describedby="ayuda-clave" required>
-            <button type="button" data-mostrar="clave"
-                    aria-controls="clave" aria-pressed="false">
-              Mostrar
-            </button>
-          </div>
-          <small id="ayuda-clave" class="ayuda-campo">
-            Usa al menos 8 caracteres.
-          </small>
-        </div>
-
-        <div class="campo">
-          <label for="confirmar-clave">Confirmar contraseña</label>
-          <div class="entrada-clave">
-            <input id="confirmar-clave" name="confirmar-clave"
-                   type="password" autocomplete="new-password"
-                   minlength="8" required>
-            <button type="button" data-mostrar="confirmar-clave"
-                    aria-controls="confirmar-clave" aria-pressed="false">
-              Mostrar
-            </button>
-          </div>
-        </div>
-
-        <button class="boton-principal" type="submit">
-          Registrar institución
+        <button type="button" class="tool" id="escuchar">
+          <span aria-hidden="true">◖))</span>
+          <span>Escuchar página</span>
         </button>
 
-        <p id="mensaje-registro" class="mensaje-login"
-           role="status" aria-live="polite"></p>
+        <button type="button" class="tool" id="pausar">
+          <span aria-hidden="true">⏯</span>
+          <span id="etiqueta-pausar">Pausar / Repetir</span>
+        </button>
+
+        <div class="text-tools" role="group"
+             aria-label="Tamaño de texto">
+          <button type="button" id="disminuir"
+                  aria-label="Disminuir texto">A−</button>
+          <button type="button" id="aumentar"
+                  aria-label="Aumentar texto">A+</button>
+        </div>
+
+        <button type="button" class="tool"
+                id="contraste" aria-pressed="false">
+          <span aria-hidden="true">◐</span>
+          <span>Alto contraste</span>
+        </button>
+
+        <button type="button" class="tool" id="tema">
+          <span aria-hidden="true">☀</span>
+          <span id="etiqueta-tema">Modo claro</span>
+        </button>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="registration-main" id="contenido">
+
+    <div class="registration-shell">
+
+      <!-- ACCIONES SUPERIORES -->
+      <div class="reg-topbar">
+
+        <a href="login-institucion.html" class="reg-back">
+          <span aria-hidden="true">←</span>
+          Volver a inicio de sesión institucional
+        </a>
+
+        <button type="button" class="reg-listen" id="instrucciones">
+          <span aria-hidden="true">◖))</span>
+          Escuchar instrucciones del formulario
+        </button>
+      </div>
+
+      <!-- TÍTULO -->
+      <div class="reg-heading">
+
+        <div class="reg-heading-top">
+          <span class="reg-eyebrow">
+            ▦ PORTAL DE AFILIACIÓN B2B
+          </span>
+          <span class="reg-tag">PORTAL B2B</span>
+        </div>
+
+        <h1>Registro de institución</h1>
+
+        <p>
+          Crea la cuenta institucional de tu entidad para
+          gestionar beneficiarios, organizar servicios de
+          apoyo y coordinar una atención más accesible.
+        </p>
+
+      </div>
+
+      <!-- INDICADOR DE PROGRESO -->
+      <section class="reg-progress-panel"
+               aria-label="Progreso del registro">
+
+        <div class="reg-progress-top">
+          <strong id="texto-progreso">
+            Progreso del registro: Paso 1 de 3 (33%)
+          </strong>
+          <span>
+            Los campos marcados con
+            <b class="required">*</b> son obligatorios
+          </span>
+        </div>
+
+        <div class="reg-progress-track" aria-hidden="true">
+          <div id="barra-progreso"></div>
+        </div>
+
+        <ol class="reg-steps" id="pasos-registro">
+
+          <li class="active" aria-current="step">
+            <span class="reg-step-number">1</span>
+            <span>
+              <strong>1. Datos de la entidad</strong>
+              <small>Identificación institucional</small>
+            </span>
+          </li>
+
+          <li>
+            <span class="reg-step-number">2</span>
+            <span>
+              <strong>2. Administrador</strong>
+              <small>Responsable institucional</small>
+            </span>
+          </li>
+
+          <li>
+            <span class="reg-step-number">3</span>
+            <span>
+              <strong>3. Seguridad y términos</strong>
+              <small>Confirmación final</small>
+            </span>
+          </li>
+
+        </ol>
+      </section>
+
+      <!-- FORMULARIO -->
+      <form id="formulario" novalidate>
+
+        <div class="reg-form-card">
+
+          <!-- PASO 1 -->
+          <section class="reg-form-step" data-step="0"
+                   aria-labelledby="titulo-paso-1">
+
+            <div class="reg-section-heading">
+              <span class="reg-section-icon" aria-hidden="true">▦</span>
+
+              <div>
+                <h2 id="titulo-paso-1">
+                  Paso 1: Datos de la institución
+                </h2>
+                <p>
+                  Identificación jurídica, datos de contacto
+                  y ubicación de la entidad.
+                </p>
+              </div>
+            </div>
+
+            <div class="reg-divider"></div>
+
+            <div class="reg-info">
+              <span class="reg-info-icon" aria-hidden="true">✓</span>
+              <div>
+                <strong>Identificación mediante RUC</strong>
+                <p>
+                  Comprueba el formato de 11 dígitos.
+                  La consulta automática con SUNAT
+                  todavía no está implementada.
+                </p>
+              </div>
+            </div>
+
+            <div class="reg-grid">
+
+              <div class="reg-field full">
+                <label for="ruc">
+                  RUC (11 dígitos)
+                  <span class="required">*</span>
+                </label>
+
+                <div class="reg-inline-field">
+                  <input
+                    id="ruc"
+                    name="ruc"
+                    type="text"
+                    inputmode="numeric"
+                    pattern="[0-9]{11}"
+                    maxlength="11"
+                    minlength="11"
+                    placeholder="Ej. 20608945123"
+                    title="Ingresa un RUC de 11 dígitos"
+                    required
+                  >
+
+                  <button type="button"
+                          class="reg-verify-btn"
+                          id="validar-ruc">
+                    Validar formato
+                  </button>
+                </div>
+
+                <small class="reg-help" id="estado-ruc"
+                       role="status" aria-live="polite">
+                  El RUC debe contener exactamente 11 números.
+                </small>
+              </div>
+
+              <div class="reg-field full">
+                <label for="razonSocial">
+                  Razón social completa
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="razonSocial"
+                  name="razonSocial"
+                  type="text"
+                  maxlength="200"
+                  autocomplete="organization"
+                  placeholder="Nombre legal de la institución"
+                  required
+                >
+              </div>
+
+              <div class="reg-field full">
+                <label for="tipoInstitucion">
+                  Tipo de institución
+                  <span class="required">*</span>
+                </label>
+
+                <select id="tipoInstitucion"
+                        name="tipoInstitucion" required>
+                  <option value="">Seleccionar institución</option>
+                  <option value="Asociacion">Asociación</option>
+                  <option value="ONG">ONG</option>
+                  <option value="Municipalidad">Municipalidad</option>
+                  <option value="Institucion educativa">
+                    Institución educativa
+                  </option>
+                  <option value="Centro de rehabilitacion">
+                    Centro de rehabilitación
+                  </option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+
+              <div class="reg-field">
+                <label for="email">
+                  Correo institucional
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  maxlength="120"
+                  autocomplete="email"
+                  placeholder="contacto@institucion.org.pe"
+                  required
+                >
+              </div>
+
+              <div class="reg-field">
+                <label for="telefono">
+                  Teléfono de contacto
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="telefono"
+                  name="telefono"
+                  type="tel"
+                  maxlength="20"
+                  autocomplete="tel"
+                  placeholder="Ej. 987 654 321"
+                  required
+                >
+              </div>
+
+              <div class="reg-field full">
+                <label for="direccion">
+                  Dirección de la sede principal
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="direccion"
+                  name="direccion"
+                  type="text"
+                  autocomplete="street-address"
+                  placeholder="Av., calle y número de la institución"
+                  required
+                >
+              </div>
+
+              <div class="reg-field">
+                <label for="region">
+                  Departamento / Región
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="region"
+                  name="region"
+                  type="text"
+                  placeholder="Ej. Ica"
+                  required
+                >
+              </div>
+
+              <div class="reg-field">
+                <label for="provincia">
+                  Provincia
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="provincia"
+                  name="provincia"
+                  type="text"
+                  placeholder="Ej. Chincha"
+                  required
+                >
+              </div>
+
+              <div class="reg-field full">
+                <label for="distrito">
+                  Distrito
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="distrito"
+                  name="distrito"
+                  type="text"
+                  placeholder="Ej. Chincha Alta"
+                  required
+                >
+              </div>
+
+            </div>
+          </section>
+
+          <!-- PASO 2 -->
+          <section class="reg-form-step" data-step="1"
+                   aria-labelledby="titulo-paso-2" hidden>
+
+            <div class="reg-section-heading">
+              <span class="reg-section-icon" aria-hidden="true">♙</span>
+
+              <div>
+                <h2 id="titulo-paso-2">
+                  Paso 2: Datos del administrador
+                </h2>
+                <p>
+                  Información de la persona responsable
+                  de la cuenta institucional.
+                </p>
+              </div>
+            </div>
+
+            <div class="reg-divider"></div>
+
+            <div class="reg-grid">
+
+              <div class="reg-field">
+                <label for="nombres">
+                  Nombres
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="nombres"
+                  type="text"
+                  autocomplete="given-name"
+                  placeholder="Nombres del responsable"
+                  required
+                >
+              </div>
+
+              <div class="reg-field">
+                <label for="apellidos">
+                  Apellidos
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="apellidos"
+                  type="text"
+                  autocomplete="family-name"
+                  placeholder="Apellidos del responsable"
+                  required
+                >
+              </div>
+
+              <div class="reg-field full">
+                <label for="cargoResponsable">
+                  Cargo institucional
+                  <span class="required">*</span>
+                </label>
+
+                <input
+                  id="cargoResponsable"
+                  type="text"
+                  placeholder="Ej. Director de Programas Inclusivos"
+                  required
+                >
+              </div>
+
+            </div>
+
+            <div class="reg-info reg-info-secondary">
+              <span class="reg-info-icon" aria-hidden="true">i</span>
+              <div>
+                <strong>Correo de acceso institucional</strong>
+                <p>
+                  La cuenta utilizará el correo institucional
+                  indicado en el paso anterior.
+                  El nombre y los apellidos del responsable
+                  se guardarán como un nombre completo.
+                </p>
+                <strong id="resumen-correo"
+                        class="reg-summary-email">
+                  —
+                </strong>
+              </div>
+            </div>
+
+            <div class="reg-info">
+              <span class="reg-info-icon" aria-hidden="true">✓</span>
+              <div>
+                <strong>Responsable de la institución</strong>
+                <p>
+                  Registra a una persona autorizada para
+                  administrar los servicios y la información
+                  institucional de AccesIA.
+                </p>
+              </div>
+            </div>
+
+          </section>
+
+          <!-- PASO 3 -->
+          <section class="reg-form-step" data-step="2"
+                   aria-labelledby="titulo-paso-3" hidden>
+
+            <div class="reg-section-heading">
+              <span class="reg-section-icon" aria-hidden="true">♢</span>
+
+              <div>
+                <h2 id="titulo-paso-3">
+                  Paso 3: Seguridad y confirmación
+                </h2>
+                <p>
+                  Crea tu contraseña y revisa la información
+                  antes de completar el registro.
+                </p>
+              </div>
+            </div>
+
+            <div class="reg-divider"></div>
+
+            <div class="reg-grid">
+
+              <div class="reg-field full">
+                <label for="contrasena">
+                  Contraseña
+                  <span class="required">*</span>
+                </label>
+
+                <div class="reg-password-wrap">
+                  <input
+                    id="contrasena"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    placeholder="Mínimo 8 caracteres"
+                    required
+                  >
+
+                  <button type="button"
+                          class="reg-password-toggle"
+                          data-toggle-password="contrasena"
+                          aria-label="Mostrar contraseña"
+                          aria-pressed="false">
+                    Mostrar
+                  </button>
+                </div>
+              </div>
+
+              <div class="reg-field full">
+                <label for="confirmar">
+                  Confirmar contraseña
+                  <span class="required">*</span>
+                </label>
+
+                <div class="reg-password-wrap">
+                  <input
+                    id="confirmar"
+                    type="password"
+                    autocomplete="new-password"
+                    minlength="8"
+                    placeholder="Repite la contraseña"
+                    required
+                  >
+
+                  <button type="button"
+                          class="reg-password-toggle"
+                          data-toggle-password="confirmar"
+                          aria-label="Mostrar confirmación de contraseña"
+                          aria-pressed="false">
+                    Mostrar
+                  </button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="reg-info">
+              <span class="reg-info-icon" aria-hidden="true">✓</span>
+              <div>
+                <strong>Protección de la contraseña</strong>
+                <p>
+                  AccesIA utiliza BCrypt para almacenar
+                  un hash de la contraseña.
+                  Utiliza una contraseña única y segura.
+                </p>
+              </div>
+            </div>
+
+            <div class="reg-review">
+              <div class="reg-review-heading">
+                <h3>Resumen de la institución</h3>
+                <button type="button" id="editar-institucion">
+                  Editar institución
+                </button>
+              </div>
+
+              <dl>
+                <div>
+                  <dt>Razón social</dt>
+                  <dd id="revision-razon">—</dd>
+                </div>
+
+                <div>
+                  <dt>RUC</dt>
+                  <dd id="revision-ruc">—</dd>
+                </div>
+
+                <div>
+                  <dt>Administrador</dt>
+                  <dd id="revision-admin">—</dd>
+                </div>
+
+                <div>
+                  <dt>Correo</dt>
+                  <dd id="revision-email">—</dd>
+                </div>
+              </dl>
+            </div>
+
+            <label class="reg-checkbox">
+              <input type="checkbox" id="aceptar" required>
+              <span>
+                <strong>
+                  Confirmo que estoy autorizado para registrar
+                  esta institución.
+                  <span class="required">*</span>
+                </strong>
+                Declaro que la información proporcionada
+                es correcta y que soy responsable de su veracidad.
+              </span>
+            </label>
+
+          </section>
+
+          <!-- MENSAJES DE RESPUESTA -->
+          <div id="mensaje-registro"
+               class="reg-status"
+               role="status"
+               aria-live="polite"
+               tabindex="-1"
+               hidden>
+          </div>
+
+          <!-- BOTONES INFERIORES -->
+          <div class="reg-form-actions">
+
+            <a href="login-institucion.html"
+               class="reg-cancel">
+              Cancelar
+            </a>
+
+            <div class="reg-action-buttons">
+
+              <button type="button"
+                      class="reg-btn reg-btn-outline"
+                      id="anterior" hidden>
+                ← Anterior
+              </button>
+
+              <button type="button"
+                      class="reg-btn reg-btn-primary"
+                      id="siguiente">
+                Continuar al Paso 2
+                <span aria-hidden="true">→</span>
+              </button>
+
+              <button type="submit"
+                      class="reg-btn reg-btn-primary"
+                      id="registrar" hidden>
+                Registrar institución
+                <span aria-hidden="true">✓</span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
       </form>
 
-      <div class="registro-login">
-        <p>¿Tu institución ya tiene una cuenta?</p>
-        <a class="boton-secundario enlace-registro"
-           href="login-institucion.html">
-          Acceso institucional
+      <!-- ENLACE AL LOGIN -->
+      <div class="reg-login-link">
+        ¿Ya tienes una cuenta institucional?
+        <a href="login-institucion.html">
+          Iniciar sesión →
         </a>
       </div>
 
-      <p class="aviso-demo">
-        Prototipo · Este formulario todavía no guarda cuentas.
-      </p>
-    </section>
+      <!-- INFORMACIÓN INFERIOR -->
+      <div class="reg-bottom-note">
+        AccesIA protege las contraseñas mediante hash BCrypt.
+        La verificación oficial de instituciones y otras
+        funciones de seguridad se incorporarán progresivamente.
+      </div>
+
+    </div>
   </main>
 
-  <footer class="pie">
-    <p>AccesIA · Servicios de apoyo accesibles</p>
+  <footer class="reg-footer">
+    <span>
+      <strong>AccesIA</strong>
+      · Plataforma de servicios de apoyo accesibles
+    </span>
+
+    <span>
+      Tecnología para un mundo más inclusivo
+    </span>
   </footer>
+
 </body>
 </html>

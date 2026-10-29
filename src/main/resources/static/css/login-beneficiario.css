@@ -1,0 +1,186 @@
+
+/* =========================================
+   ACCESIA - LOGIN DEL BENEFICIARIO
+   EXTENSIÓN DEL DISEÑO APROBADO
+========================================= */
+
+.pagina-login .registro-main {
+  min-height: min(760px, calc(100vh - 160px));
+  align-items: stretch;
+}
+
+/* PANEL DE PRESENTACIÓN */
+
+.pagina-login .panel-presentacion {
+  min-height: 635px;
+}
+
+.pagina-login .panel-presentacion h1 {
+  margin-top: 30px;
+}
+
+.pagina-login .ilustracion-registro {
+  margin-top: 25px;
+  margin-bottom: 22px;
+}
+
+/* PANEL DEL LOGIN */
+
+.login-panel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: clamp(28px, 4vw, 65px);
+}
+
+.login-identificador {
+  width: 67px;
+  height: 67px;
+
+  margin-bottom: 24px;
+
+  display: grid;
+  place-items: center;
+
+  background: linear-gradient(
+    145deg,
+    rgba(32, 112, 244, .16),
+    rgba(123, 62, 224, .15)
+  );
+
+  color: var(--azul);
+
+  border: 1px solid var(--borde);
+  border-radius: 19px;
+}
+
+.login-identificador svg {
+  width: 34px;
+  height: 34px;
+}
+
+.login-panel .formulario-cabecera {
+  margin-bottom: 32px;
+}
+
+.login-panel .formulario-cabecera h2 {
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  margin-top: 16px;
+  letter-spacing: -.06em;
+}
+
+.login-panel .formulario-cabecera p {
+  max-width: 460px;
+  line-height: 1.9;
+}
+
+/* CAMPOS */
+
+.login-campo {
+  margin-bottom: 23px;
+}
+
+.login-campo label {
+  margin-bottom: 10px;
+  font-size: .79rem;
+}
+
+.login-campo > input,
+.login-campo .entrada-clave input {
+  min-height: 55px;
+  padding-left: 16px;
+  border-radius: 11px;
+  font-size: .85rem;
+}
+
+.login-campo .entrada-clave input {
+  padding-right: 94px;
+}
+
+/* BOTÓN DE ACCESO */
+
+.login-panel .boton-principal {
+  min-height: 55px;
+  margin-top: 12px;
+  font-size: .88rem;
+  border-radius: 11px;
+}
+
+/* MENSAJES Y ENLACES */
+
+.login-panel .mensaje-login:not(:empty) {
+  margin: 19px 0 0;
+  padding: 13px 15px;
+
+  border: 1px solid var(--borde);
+  border-left: 3px solid var(--azul);
+  border-radius: 10px;
+
+  background: var(--fondo-secundario);
+
+  color: var(--texto);
+  font-size: .78rem;
+  line-height: 1.75;
+}
+
+.login-panel .registro-login {
+  margin-top: 25px;
+  padding-top: 24px;
+}
+
+.login-enlace-institucion {
+  margin-top: 25px;
+  padding: 20px 15px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+
+  background: var(--fondo-secundario);
+  border: 1px solid var(--borde);
+  border-radius: 11px;
+
+  color: var(--texto-suave);
+  font-size: .75rem;
+}
+
+.login-enlace-institucion a {
+  color: var(--azul);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.login-enlace-institucion a:hover {
+  text-decoration: underline;
+}
+
+.login-panel .enlace-inicio {
+  margin-top: 23px;
+}
+
+@media (max-width: 1100px) {
+  .pagina-login .registro-main {
+    min-height: auto;
+  }
+
+  .pagina-login .panel-presentacion {
+    min-height: auto;
+  }
+
+  .login-panel {
+    padding: 35px 30px;
+  }
+}
+
+@media (max-width: 650px) {
+  .login-panel {
+    padding: 28px 20px;
+  }
+
+  .pagina-login .ilustracion-registro {
+    margin: 10px auto;
+  }
+}

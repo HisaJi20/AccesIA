@@ -1,122 +1,416 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#211729">
-  <title>AccesIA | Registrar beneficiario</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <meta name="theme-color" content="#0b111f">
+
+  <title>AccesIA | Registro de beneficiarios</title>
+
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="css/registro-beneficiario.css">
+
   <script src="js/registro.js" defer></script>
+
+  <script src="js/registro-beneficiario-tema.js"
+          defer></script>
 </head>
+
 <body>
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
 
-  <header class="cabecera">
-    <a class="marca" href="index.html" aria-label="Volver al inicio">
-      <img src="img/logo.png" alt="AccesIA" class="logo">
-    </a>
+  <a class="saltar" href="#contenido">
+    Saltar al contenido
+  </a>
 
-    <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
-      <button id="texto-btn" type="button" aria-pressed="false">
-        A+ Tamaño de texto
-      </button>
-      <button id="contraste-btn" type="button" aria-pressed="false">
-        ◐ Contraste
-      </button>
-      <button id="leer-btn" type="button">▶ Leer página</button>
-    </nav>
-  </header>
+  <div class="pagina-registro">
 
-  <main id="contenido" class="contenido">
-    <section class="panel panel-login" aria-labelledby="titulo-registro">
-      <a class="enlace-volver" href="index.html">← Volver al inicio</a>
+    <!-- ====================================
+         CABECERA
+    ===================================== -->
 
-      <div class="presentacion">
-        <span class="etiqueta">Registro de beneficiario</span>
-        <h1 id="titulo-registro">Tu apoyo comienza aquí</h1>
-        <p class="descripcion">
-          Completa tus datos para dar el primer paso hacia los servicios de apoyo.
-        </p>
-      </div>
+    <header class="registro-header">
 
-      <form id="registro-form" class="formulario-login">
-        <div class="campo">
-          <label for="nombres">Nombres</label>
-          <input id="nombres" name="nombres" type="text"
-                 autocomplete="given-name" maxlength="100" required>
-        </div>
+      <a href="index.html"
+         class="marca-registro"
+         aria-label="Ir al inicio de AccesIA">
 
-        <div class="campo">
-          <label for="apellidos">Apellidos</label>
-          <input id="apellidos" name="apellidos" type="text"
-                 autocomplete="family-name" maxlength="100" required>
-        </div>
+        <img src="img/logo.png" alt="">
 
-        <div class="campo">
-          <label for="correo">Correo electrónico</label>
-          <input id="correo" name="correo" type="email"
-                 autocomplete="username" maxlength="254" required>
-        </div>
+        <span class="marca-texto">
+          <strong>Acces<span>IA</span></strong>
+          <small>Servicios de apoyo accesibles</small>
+        </span>
 
-        <div class="campo">
-          <label for="telefono">Teléfono de contacto (opcional)</label>
-          <input id="telefono" name="telefono" type="tel"
-                 autocomplete="tel" maxlength="30">
-        </div>
+      </a>
 
-        <div class="campo">
-          <label for="clave">Contraseña</label>
-          <div class="entrada-clave">
-            <input id="clave" name="clave" type="password"
-                   autocomplete="new-password" minlength="8"
-                   aria-describedby="ayuda-clave" required>
-            <button type="button" data-mostrar="clave"
-                    aria-controls="clave" aria-pressed="false">
-              Mostrar
-            </button>
-          </div>
-          <small id="ayuda-clave" class="ayuda-campo">
-            Usa al menos 8 caracteres.
-          </small>
-        </div>
+      <nav class="herramientas"
+           aria-label="Opciones de accesibilidad">
 
-        <div class="campo">
-          <label for="confirmar-clave">Confirmar contraseña</label>
-          <div class="entrada-clave">
-            <input id="confirmar-clave" name="confirmar-clave"
-                   type="password" autocomplete="new-password"
-                   minlength="8" required>
-            <button type="button" data-mostrar="confirmar-clave"
-                    aria-controls="confirmar-clave" aria-pressed="false">
-              Mostrar
-            </button>
-          </div>
-        </div>
-
-        <button class="boton-principal" type="submit">
-          Registrar beneficiario
+        <button id="texto-btn"
+                type="button"
+                aria-pressed="false">
+          A+ <span>Tamaño de texto</span>
         </button>
 
-        <p id="mensaje-registro" class="mensaje-login"
-           role="status" aria-live="polite"></p>
-      </form>
+        <button id="contraste-btn"
+                type="button"
+                aria-pressed="false">
+          ◐ <span>Contraste</span>
+        </button>
 
-      <div class="registro-login">
-        <p>¿Ya tienes una cuenta?</p>
-        <a class="boton-secundario enlace-registro"
-           href="login-beneficiario.html">
-          Acceso para beneficiarios
-        </a>
-      </div>
+        <button id="tema-btn"
+                type="button"
+                aria-pressed="false">
+          Modo claro
+        </button>
 
-      <p class="aviso-demo">
-        Prototipo · Este formulario todavía no guarda cuentas.
-      </p>
-    </section>
-  </main>
+        <button id="leer-btn"
+                type="button"
+                class="boton-voz">
+          ▶ Leer página
+        </button>
 
-  <footer class="pie">
-    <p>AccesIA · Servicios de apoyo accesibles</p>
-  </footer>
+      </nav>
+
+    </header>
+
+    <!-- ====================================
+         CONTENIDO PRINCIPAL
+    ===================================== -->
+
+    <main id="contenido" class="registro-main">
+
+      <!-- PANEL INFORMATIVO -->
+
+      <section class="panel-presentacion"
+               aria-labelledby="titulo-bienvenida">
+
+        <div class="presentacion-contenido">
+
+          <span class="etiqueta-superior">
+            <span class="punto-activo"></span>
+            ACCESIA PARA BENEFICIARIOS
+          </span>
+
+          <h1 id="titulo-bienvenida">
+            Tu espacio de apoyo
+            <span>comienza aquí.</span>
+          </h1>
+
+          <p class="descripcion-principal">
+            Conectamos a las personas con discapacidad
+            visual con instituciones y servicios
+            de apoyo accesibles.
+          </p>
+
+          <!-- ILUSTRACIÓN DE ESTILO FIGMA -->
+
+          <div class="ilustracion-registro"
+               aria-hidden="true">
+
+            <div class="orbita orbita-uno"></div>
+            <div class="orbita orbita-dos"></div>
+
+            <div class="tarjeta-flotante tarjeta-izquierda">
+              <div class="icono-flotante">
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4"/>
+                  <path d="M4 21v-2a8 8 0 0 1 16 0v2"/>
+                </svg>
+              </div>
+              <span>Perfil personal</span>
+            </div>
+
+            <div class="nucleo-accesia">
+              <div class="nucleo-interior">
+                <span class="letra-a">A</span>
+              </div>
+              <span class="nucleo-sombra"></span>
+            </div>
+
+            <div class="tarjeta-flotante tarjeta-derecha">
+              <div class="icono-flotante">
+                <svg viewBox="0 0 24 24"
+                     fill="none"
+                     stroke="currentColor"
+                     stroke-width="1.8"
+                     stroke-linecap="round"
+                     stroke-linejoin="round">
+                  <path d="M4 21V6l8-4 8 4v15"/>
+                  <path d="M9 21v-7h6v7M8 9h.01M16 9h.01"/>
+                </svg>
+              </div>
+              <span>Servicios de apoyo</span>
+            </div>
+
+            <div class="base-luminosa"></div>
+
+          </div>
+
+          <div class="beneficios-registro">
+
+            <div class="beneficio">
+              <span class="beneficio-icono">✓</span>
+              <span>Encuentra servicios accesibles</span>
+            </div>
+
+            <div class="beneficio">
+              <span class="beneficio-icono">✓</span>
+              <span>Gestiona tus solicitudes</span>
+            </div>
+
+            <div class="beneficio">
+              <span class="beneficio-icono">✓</span>
+              <span>Consulta el avance de tu atención</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="nota-presentacion">
+          Inclusión, accesibilidad y tecnología
+          en un solo espacio.
+        </p>
+
+      </section>
+
+      <!-- PANEL DEL FORMULARIO -->
+
+      <section class="panel-formulario"
+               aria-labelledby="titulo-registro">
+
+        <div class="formulario-cabecera">
+
+          <span class="etiqueta-formulario">
+            CREACIÓN DE CUENTA
+          </span>
+
+          <h2 id="titulo-registro">
+            Registrar beneficiario
+          </h2>
+
+          <p>
+            Crea tu cuenta personal para acceder a
+            los servicios de apoyo de AccesIA.
+          </p>
+
+        </div>
+
+        <form id="registro-form"
+              class="formulario-login">
+
+          <!-- DATOS PERSONALES -->
+
+          <div class="grupo-formulario">
+
+            <div class="grupo-titulo">
+              <span class="grupo-numero">01</span>
+
+              <div>
+                <h3>Información personal</h3>
+                <p>Cuéntanos cómo podemos identificarte.</p>
+              </div>
+            </div>
+
+            <div class="campos-grid">
+
+              <div class="campo">
+                <label for="nombres">
+                  Nombres <span>*</span>
+                </label>
+
+                <input id="nombres"
+                       name="nombres"
+                       type="text"
+                       placeholder="Ingresa tus nombres"
+                       autocomplete="given-name"
+                       maxlength="100"
+                       required>
+              </div>
+
+              <div class="campo">
+                <label for="apellidos">
+                  Apellidos <span>*</span>
+                </label>
+
+                <input id="apellidos"
+                       name="apellidos"
+                       type="text"
+                       placeholder="Ingresa tus apellidos"
+                       autocomplete="family-name"
+                       maxlength="100"
+                       required>
+              </div>
+
+              <div class="campo">
+                <label for="correo">
+                  Correo electrónico <span>*</span>
+                </label>
+
+                <input id="correo"
+                       name="correo"
+                       type="email"
+                       placeholder="correo@ejemplo.com"
+                       autocomplete="username"
+                       maxlength="120"
+                       required>
+              </div>
+
+              <div class="campo">
+                <label for="telefono">
+                  Teléfono de contacto
+                  <small>Opcional</small>
+                </label>
+
+                <input id="telefono"
+                       name="telefono"
+                       type="tel"
+                       placeholder="Ej. 900 000 000"
+                       autocomplete="tel"
+                       maxlength="20">
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- SEGURIDAD -->
+
+          <div class="grupo-formulario">
+
+            <div class="grupo-titulo">
+              <span class="grupo-numero">02</span>
+
+              <div>
+                <h3>Seguridad de tu cuenta</h3>
+                <p>
+                  Protege tu acceso con una contraseña.
+                </p>
+              </div>
+            </div>
+
+            <div class="campos-grid">
+
+              <div class="campo">
+                <label for="clave">
+                  Contraseña <span>*</span>
+                </label>
+
+                <div class="entrada-clave">
+
+                  <input id="clave"
+                         name="clave"
+                         type="password"
+                         autocomplete="new-password"
+                         placeholder="Mínimo 10 caracteres"
+                         minlength="10"
+                         required>
+
+                  <button type="button"
+                          data-mostrar="clave"
+                          aria-pressed="false">
+                    Mostrar
+                  </button>
+
+                </div>
+              </div>
+
+              <div class="campo">
+                <label for="confirmar-clave">
+                  Confirmar contraseña <span>*</span>
+                </label>
+
+                <div class="entrada-clave">
+
+                  <input id="confirmar-clave"
+                         name="confirmar-clave"
+                         type="password"
+                         autocomplete="new-password"
+                         placeholder="Repite tu contraseña"
+                         minlength="10"
+                         required>
+
+                  <button type="button"
+                          data-mostrar="confirmar-clave"
+                          aria-pressed="false">
+                    Mostrar
+                  </button>
+
+                </div>
+              </div>
+
+            </div>
+
+            <p class="ayuda-clave">
+              Utiliza al menos 10 caracteres.
+              No compartas tu contraseña.
+            </p>
+
+          </div>
+
+          <!-- ENVÍO -->
+
+          <p class="campos-obligatorios">
+            Los campos marcados con * son obligatorios.
+          </p>
+
+          <button class="boton-principal"
+                  type="submit">
+            Crear mi cuenta
+            <span aria-hidden="true">→</span>
+          </button>
+
+          <p id="mensaje-registro"
+             class="mensaje-login"
+             role="status"
+             aria-live="polite"></p>
+
+        </form>
+
+        <div class="registro-login">
+          <span>¿Ya tienes una cuenta?</span>
+
+          <a href="login-beneficiario.html">
+            Iniciar sesión →
+          </a>
+        </div>
+
+        <div class="enlace-inicio">
+          <a href="index.html">
+            ← Volver al inicio de AccesIA
+          </a>
+        </div>
+
+      </section>
+
+    </main>
+
+    <footer class="registro-footer">
+      <span>© AccesIA · Servicios de apoyo accesibles</span>
+      <span>Diseñado para una experiencia inclusiva</span>
+    </footer>
+
+  </div>
+
 </body>
 </html>

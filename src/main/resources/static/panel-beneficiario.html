@@ -1,164 +1,699 @@
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-theme="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#211729">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1">
+
+  <meta name="theme-color" content="#f4f8ff">
 
   <title>AccesIA | Panel del beneficiario</title>
 
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/paneles.css">
+  <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+  <link rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin>
 
-  <script src="js/beneficiario.js" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+  <link rel="stylesheet"
+        href="css/dashboard-beneficiario.css">
+
+  <script src="js/dashboard-beneficiario.js"
+          defer></script>
 </head>
 
-<body class="pagina-panel" data-perfil="beneficiario">
-  <a class="saltar" href="#contenido">Saltar al contenido</a>
+<body>
 
-  <div class="estructura-panel">
-    <aside class="menu-lateral" aria-label="Panel del beneficiario">
-      <a
-        class="marca-panel"
-        href="panel-beneficiario.html"
-        aria-label="Inicio del panel del beneficiario">
-        <img src="img/logo.png" alt="AccesIA">
+  <a class="saltar" href="#contenido">
+    Saltar al contenido
+  </a>
+
+  <div class="app-layout">
+
+    <!-- ====================================
+         BARRA LATERAL
+    ===================================== -->
+
+    <aside id="sidebar"
+           class="sidebar"
+           aria-label="Panel del beneficiario">
+
+      <a class="sidebar-marca"
+         href="panel-beneficiario.html">
+
+        <img src="img/logo.png"
+             alt="">
+
+        <span>Acces<span>IA</span></span>
       </a>
 
-      <p class="nombre-perfil">Espacio del beneficiario</p>
+      <p class="sidebar-descripcion">
+        ESPACIO DEL BENEFICIARIO
+      </p>
 
-      <nav
-        id="menu-modulos"
-        class="menu-modulos"
-        aria-label="Navegación del beneficiario">
+      <nav id="menu-modulos"
+           class="sidebar-nav"
+           aria-label="Navegación principal">
 
-        <button
-          class="opcion-menu"
-          type="button"
-          data-modulo="inicio"
-          aria-current="page">
-          <span aria-hidden="true">⌂</span>
-          <span>Inicio</span>
+        <button type="button"
+                class="nav-item activo"
+                data-view="inicio"
+                aria-current="page">
+          <span class="nav-icono" aria-hidden="true">⌂</span>
+          Inicio
         </button>
 
-        <button
-          class="opcion-menu"
-          type="button"
-          data-modulo="servicios">
-          <span aria-hidden="true">▦</span>
-          <span>Servicios disponibles</span>
+        <button type="button"
+                class="nav-item"
+                data-view="perfil">
+          <span class="nav-icono" aria-hidden="true">◉</span>
+          Mi perfil
         </button>
 
-        <button
-          class="opcion-menu"
-          type="button"
-          data-modulo="solicitar">
-          <span aria-hidden="true">+</span>
-          <span>Solicitar apoyo</span>
+        <button type="button"
+                class="nav-item"
+                data-view="servicios">
+          <span class="nav-icono" aria-hidden="true">▦</span>
+          Servicios disponibles
         </button>
 
-        <button
-          class="opcion-menu"
-          type="button"
-          data-modulo="solicitudes">
-          <span aria-hidden="true">▤</span>
-          <span>Mis solicitudes</span>
+        <button type="button"
+                class="nav-item"
+                data-view="solicitar">
+          <span class="nav-icono" aria-hidden="true">＋</span>
+          Solicitar apoyo
         </button>
 
-        <button
-          class="opcion-menu"
-          type="button"
-          data-modulo="asistente">
-          <span aria-hidden="true">✧</span>
-          <span>Asistente IA</span>
+        <button type="button"
+                class="nav-item"
+                data-view="solicitudes">
+          <span class="nav-icono" aria-hidden="true">▤</span>
+          Mis solicitudes
         </button>
+
+        <button type="button"
+                class="nav-item"
+                data-view="asistente">
+          <span class="nav-icono" aria-hidden="true">✧</span>
+          Asistente IA
+        </button>
+
+        <button type="button"
+                class="nav-item"
+                data-view="ayuda">
+          <span class="nav-icono" aria-hidden="true">?</span>
+          Ayuda
+        </button>
+
       </nav>
 
-      <div class="menu-inferior">
-        <button id="ayuda-btn" class="opcion-menu" type="button">
-          <span aria-hidden="true">?</span>
-          <span>Ayuda</span>
+      <div class="sidebar-footer">
+
+        <div class="sidebar-cuenta">
+          <span class="avatar" id="sidebar-avatar">B</span>
+
+          <div class="sidebar-cuenta-texto">
+            <strong id="sidebar-nombre">
+              Cargando perfil...
+            </strong>
+            <small id="sidebar-correo">
+              Cuenta personal
+            </small>
+          </div>
+        </div>
+
+        <button id="salir-btn"
+                type="button"
+                class="nav-item salir-btn">
+          <span class="nav-icono" aria-hidden="true">↪</span>
+          Cerrar sesión
         </button>
 
-        <a class="opcion-menu" href="index.html">
-          <span aria-hidden="true">↪</span>
-          <span>Salir de la demostración</span>
-        </a>
       </div>
+
     </aside>
 
-    <div class="zona-principal">
-      <header class="barra-superior">
-        <nav class="accesibilidad" aria-label="Opciones de accesibilidad">
-          <button id="texto-btn" type="button" aria-pressed="false">
-            A+ Tamaño de texto
+    <!-- ====================================
+         CONTENIDO PRINCIPAL
+    ===================================== -->
+
+    <div class="main-layout">
+
+      <header class="topbar">
+
+        <div class="topbar-identidad">
+          <button id="menu-movil"
+                  class="menu-movil"
+                  type="button"
+                  aria-label="Abrir menú"
+                  aria-expanded="false"
+                  aria-controls="sidebar">
+            ☰
           </button>
 
-          <button id="contraste-btn" type="button" aria-pressed="false">
-            ◐ Contraste
+          <span class="topbar-ruta">
+            AccesIA / Beneficiario
+          </span>
+        </div>
+
+        <nav class="topbar-herramientas"
+             aria-label="Herramientas de accesibilidad">
+
+          <button id="texto-btn"
+                  type="button"
+                  aria-pressed="false">
+            A+ <span>Tamaño de texto</span>
           </button>
 
-          <button id="leer-btn" type="button">
-            ▶ Leer página
+          <button id="contraste-btn"
+                  type="button"
+                  aria-pressed="false">
+            ◐ <span>Contraste</span>
           </button>
+
+          <button id="tema-btn"
+                  type="button"
+                  aria-pressed="false">
+            ◑ <span>Modo oscuro</span>
+          </button>
+
+          <button id="leer-btn"
+                  type="button"
+                  class="btn-leer">
+            ▶ <span>Leer página</span>
+          </button>
+
         </nav>
+
       </header>
 
-      <main id="contenido" class="contenido-panel" tabindex="-1">
-        <section class="introduccion-panel" aria-labelledby="titulo-panel">
-          <span id="etiqueta-panel" class="etiqueta">
-            Panel del beneficiario
-          </span>
+      <main id="contenido"
+            class="main-content"
+            tabindex="-1">
 
-          <h1 id="titulo-panel">Tu apoyo, más cerca.</h1>
+        <div id="alerta-panel"
+             class="alerta-panel"
+             role="alert"
+             hidden></div>
 
-          <p id="descripcion-panel" class="descripcion">
-            Encuentra servicios, solicita asistencia y consulta
-            el avance de tu atención.
-          </p>
+        <!-- =================================
+             INICIO
+        ================================== -->
+
+        <section id="panel-inicio"
+                 class="panel-section"
+                 aria-labelledby="titulo-inicio">
+
+          <div class="hero-panel">
+
+            <div class="hero-texto">
+              <span class="eyebrow">
+                PANEL DEL BENEFICIARIO
+              </span>
+
+              <h1 id="titulo-inicio">
+                Tu apoyo,
+                <span>más cerca.</span>
+              </h1>
+
+              <p id="saludo-beneficiario">
+                Estamos preparando tu espacio personal.
+              </p>
+            </div>
+
+            <div class="hero-arte" aria-hidden="true">
+              <div class="arte-orbita"></div>
+              <div class="arte-tarjeta arte-uno">◉</div>
+              <div class="arte-tarjeta arte-dos">✓</div>
+              <div class="arte-centro">A</div>
+            </div>
+
+          </div>
+
+          <div class="seccion-encabezado">
+            <div>
+              <h2>Tu espacio de atención</h2>
+              <p>Accede rápidamente a las opciones de AccesIA.</p>
+            </div>
+          </div>
+
+          <div class="accesos-grid">
+
+            <article class="acceso-card">
+              <span class="card-icono">◉</span>
+              <h3>Mi perfil</h3>
+              <p>
+                Consulta tus datos personales y configura
+                tus preferencias de accesibilidad.
+              </p>
+              <button type="button"
+                      class="card-enlace"
+                      data-ir="perfil">
+                Ver mi perfil →
+              </button>
+            </article>
+
+            <article class="acceso-card">
+              <span class="card-icono">▦</span>
+              <h3>Servicios disponibles</h3>
+              <p>
+                Consulta esta sección cuando las
+                instituciones publiquen servicios.
+              </p>
+              <button type="button"
+                      class="card-enlace"
+                      data-ir="servicios">
+                Ver sección →
+              </button>
+            </article>
+
+            <article class="acceso-card">
+              <span class="card-icono">▤</span>
+              <h3>Mis solicitudes</h3>
+              <p>
+                Aquí podrás dar seguimiento a
+                las solicitudes de apoyo.
+              </p>
+              <button type="button"
+                      class="card-enlace"
+                      data-ir="solicitudes">
+                Ver sección →
+              </button>
+            </article>
+
+            <article class="acceso-card">
+              <span class="card-icono">✧</span>
+              <h3>Asistente IA</h3>
+              <p>
+                Haz consultas sobre el uso de
+                AccesIA y sus servicios de apoyo.
+              </p>
+              <button type="button"
+                      class="card-enlace"
+                      data-ir="asistente">
+                Abrir asistente →
+              </button>
+            </article>
+
+          </div>
+
+          <article class="cuenta-resumen">
+            <div>
+              <span class="eyebrow">CUENTA PERSONAL</span>
+              <h2 id="resumen-nombre">Cargando...</h2>
+              <p id="resumen-correo">Consultando correo...</p>
+            </div>
+
+            <span class="estado-cuenta"
+                  id="resumen-estado">
+              Comprobando sesión
+            </span>
+          </article>
+
         </section>
 
-        <section
-          id="vista-modulo"
-          class="superficie-panel"
-          aria-labelledby="titulo-vista">
-          <h2 id="titulo-vista">Bienvenido a tu espacio de apoyo</h2>
+        <!-- =================================
+             MI PERFIL
+        ================================== -->
+
+        <section id="panel-perfil"
+                 class="panel-section"
+                 aria-labelledby="titulo-perfil"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">CUENTA PERSONAL</span>
+            <h1 id="titulo-perfil">Mi perfil</h1>
+            <p>
+              Información correspondiente a la cuenta
+              con la que has iniciado sesión.
+            </p>
+          </div>
+
+          <article class="contenido-card">
+
+            <div class="card-cabecera">
+              <div>
+                <h2>Datos personales</h2>
+                <p>Información registrada en MySQL.</p>
+              </div>
+              <span class="estado-cuenta">Perfil personal</span>
+            </div>
+
+            <dl class="perfil-grid">
+
+              <div class="perfil-dato">
+                <dt>Nombres</dt>
+                <dd id="dato-nombres">—</dd>
+              </div>
+
+              <div class="perfil-dato">
+                <dt>Apellidos</dt>
+                <dd id="dato-apellidos">—</dd>
+              </div>
+
+              <div class="perfil-dato">
+                <dt>Correo electrónico</dt>
+                <dd id="dato-correo">—</dd>
+              </div>
+
+              <div class="perfil-dato">
+                <dt>Documento</dt>
+                <dd id="dato-documento">—</dd>
+              </div>
+
+              <div class="perfil-dato">
+                <dt>Fecha de nacimiento</dt>
+                <dd id="dato-nacimiento">—</dd>
+              </div>
+
+              <div class="perfil-dato">
+                <dt>Condición visual</dt>
+                <dd id="dato-visual">—</dd>
+              </div>
+
+            </dl>
+
+          </article>
+
+          <article class="contenido-card">
+
+            <div class="card-cabecera">
+              <div>
+                <h2>Preferencias de accesibilidad</h2>
+                <p>
+                  Puedes actualizar estos datos desde
+                  tu cuenta personal.
+                </p>
+              </div>
+            </div>
+
+            <form id="perfil-form" class="perfil-form">
+
+              <div class="perfil-form-grid">
+
+                <div class="campo">
+                  <label for="perfil-telefono">
+                    Teléfono de contacto
+                  </label>
+                  <input id="perfil-telefono"
+                         type="tel"
+                         autocomplete="tel"
+                         maxlength="20"
+                         placeholder="Ingresa tu teléfono">
+                </div>
+
+                <div class="campo">
+                  <label for="perfil-comunicacion">
+                    Preferencia de comunicación
+                  </label>
+                  <input id="perfil-comunicacion"
+                         type="text"
+                         maxlength="60"
+                         placeholder="Ej. Audio o texto">
+                </div>
+
+                <label class="campo-check">
+                  <input id="perfil-lector"
+                         type="checkbox">
+                  Requiero lector de pantalla
+                </label>
+
+              </div>
+
+              <div class="form-acciones">
+                <button id="perfil-guardar"
+                        type="submit"
+                        class="boton-primario">
+                  Guardar cambios
+                </button>
+              </div>
+
+              <p id="perfil-mensaje"
+                 class="form-mensaje"
+                 role="status"
+                 aria-live="polite"></p>
+
+            </form>
+
+          </article>
+
         </section>
+
+        <!-- =================================
+             SERVICIOS
+        ================================== -->
+
+        <section id="panel-servicios"
+                 class="panel-section"
+                 aria-labelledby="titulo-servicios"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">SERVICIOS INSTITUCIONALES</span>
+            <h1 id="titulo-servicios">Servicios disponibles</h1>
+            <p>
+              Próximamente encontrarás servicios
+              publicados por las instituciones.
+            </p>
+          </div>
+
+          <article class="contenido-card estado-pendiente">
+            <span class="card-icono">▦</span>
+            <h2>Catálogo en preparación</h2>
+            <p>
+              Aún no hemos conectado este módulo con
+              el catálogo real de servicios en MySQL.
+              Aquí no se muestran datos de demostración.
+            </p>
+            <button type="button"
+                    class="boton-secundario"
+                    data-ir="asistente">
+              Consultar al asistente
+            </button>
+          </article>
+
+        </section>
+
+        <!-- =================================
+             SOLICITAR APOYO
+        ================================== -->
+
+        <section id="panel-solicitar"
+                 class="panel-section"
+                 aria-labelledby="titulo-solicitar"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">ATENCIÓN PERSONAL</span>
+            <h1 id="titulo-solicitar">Solicitar apoyo</h1>
+            <p>
+              Este módulo permitirá presentar solicitudes
+              vinculadas a tu cuenta.
+            </p>
+          </div>
+
+          <article class="contenido-card estado-pendiente">
+            <span class="card-icono">＋</span>
+            <h2>Solicitudes en preparación</h2>
+            <p>
+              La creación de solicitudes quedará habilitada
+              cuando conectemos los servicios institucionales
+              y el registro real de solicitudes.
+            </p>
+          </article>
+
+        </section>
+
+        <!-- =================================
+             MIS SOLICITUDES
+        ================================== -->
+
+        <section id="panel-solicitudes"
+                 class="panel-section"
+                 aria-labelledby="titulo-solicitudes"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">SEGUIMIENTO DE ATENCIONES</span>
+            <h1 id="titulo-solicitudes">Mis solicitudes</h1>
+            <p>
+              Aquí se mostrará el historial de
+              solicitudes de la cuenta autenticada.
+            </p>
+          </div>
+
+          <article class="contenido-card estado-pendiente">
+            <span class="card-icono">▤</span>
+            <h2>Seguimiento pendiente</h2>
+            <p>
+              Todavía no se ha conectado esta sección
+              a las solicitudes de MySQL. No se
+              utilizarán los registros ficticios
+              del prototipo anterior.
+            </p>
+          </article>
+
+        </section>
+
+        <!-- =================================
+             ASISTENTE IA
+        ================================== -->
+
+        <section id="panel-asistente"
+                 class="panel-section"
+                 aria-labelledby="titulo-asistente"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">ASISTENCIA INTELIGENTE</span>
+            <h1 id="titulo-asistente">Asistente IA</h1>
+            <p>
+              Recibe orientación sobre AccesIA
+              utilizando nuestro asistente.
+            </p>
+          </div>
+
+          <article class="contenido-card asistente-card">
+
+            <div class="card-cabecera">
+              <div>
+                <h2>Conversación con AccesIA</h2>
+                <p>Asistente conectado a la API del proyecto.</p>
+              </div>
+            </div>
+
+            <p class="aviso-ia">
+              Las respuestas de IA pueden contener errores.
+              No compartas contraseñas ni información
+              personal sensible en el chat.
+            </p>
+
+            <div id="chat-historial"
+                 class="chat-historial"
+                 role="log"
+                 aria-label="Conversación con el asistente IA"
+                 aria-live="polite"
+                 aria-relevant="additions"
+                 tabindex="0">
+
+              <div class="chat-mensaje chat-ia">
+                <strong>Asistente AccesIA</strong>
+                <p>
+                  ¡Hola! ¿En qué puedo ayudarte
+                  con el uso de AccesIA?
+                </p>
+              </div>
+
+            </div>
+
+            <form id="chat-form" class="chat-form">
+
+              <label for="chat-consulta">
+                Escribe tu consulta
+              </label>
+
+              <textarea id="chat-consulta"
+                        rows="3"
+                        maxlength="1000"
+                        placeholder="¿Cómo puedo solicitar apoyo?"
+                        required></textarea>
+
+              <div class="form-acciones">
+
+                <button id="chat-enviar"
+                        type="submit"
+                        class="boton-primario">
+                  Enviar consulta
+                </button>
+
+              </div>
+
+              <p id="chat-estado"
+                 class="form-mensaje"
+                 role="status"
+                 aria-live="polite"></p>
+
+            </form>
+
+          </article>
+
+        </section>
+
+        <!-- =================================
+             AYUDA
+        ================================== -->
+
+        <section id="panel-ayuda"
+                 class="panel-section"
+                 aria-labelledby="titulo-ayuda"
+                 hidden>
+
+          <div class="pagina-encabezado">
+            <span class="eyebrow">CENTRO DE ORIENTACIÓN</span>
+            <h1 id="titulo-ayuda">Ayuda</h1>
+            <p>
+              Conoce las principales opciones
+              de tu espacio personal.
+            </p>
+          </div>
+
+          <article class="contenido-card ayuda-card">
+
+            <h2>¿Cómo utilizar tu panel?</h2>
+
+            <p>
+              <strong>Inicio:</strong>
+              consulta el resumen de tu cuenta
+              y accede a las secciones principales.
+            </p>
+
+            <p>
+              <strong>Mi perfil:</strong>
+              revisa tus datos y modifica tus
+              preferencias de accesibilidad.
+            </p>
+
+            <p>
+              <strong>Servicios y solicitudes:</strong>
+              se habilitarán cuando estén conectados
+              a sus módulos institucionales.
+            </p>
+
+            <p>
+              <strong>Asistente IA:</strong>
+              realiza consultas para recibir orientación.
+            </p>
+
+            <p>
+              <strong>Cerrar sesión:</strong>
+              finaliza tu acceso de manera segura
+              al terminar de utilizar AccesIA.
+            </p>
+
+          </article>
+
+        </section>
+
       </main>
 
       <footer class="footer-panel">
-        <p>AccesIA · Servicios de apoyo accesibles</p>
-        <p>Modo demostración · Sin conexión a cuentas reales.</p>
+        <span>© AccesIA · Servicios de apoyo accesibles</span>
+        <span>Espacio personal del beneficiario</span>
       </footer>
+
     </div>
+
   </div>
 
-  <p
-    id="estado"
-    class="solo-lector"
-    role="status"
-    aria-live="polite"></p>
+  <p id="estado-accesible"
+     class="solo-lector"
+     role="status"
+     aria-live="polite"></p>
 
-  <dialog
-    id="dialogo"
-    aria-labelledby="dialogo-titulo"
-    aria-describedby="dialogo-texto">
-    <h2 id="dialogo-titulo">Ayuda</h2>
-
-    <p id="dialogo-texto">
-      En Inicio, selecciona un beneficiario ficticio o crea uno.
-      Consulta los servicios disponibles y envía una solicitud.
-      Luego podrás revisar su estado en Mis solicitudes.
-      Esta selección simula un perfil; no es un inicio de sesión real.
-    </p>
-
-    <button
-      id="cerrar-dialogo"
-      class="boton-principal"
-      type="button"
-      autofocus>
-      Volver al panel
-    </button>
-  </dialog>
 </body>
 </html>
