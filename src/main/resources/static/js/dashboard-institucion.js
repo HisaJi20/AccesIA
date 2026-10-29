@@ -12,7 +12,10 @@ const seccionDashboard =
   document.getElementById("vista-dashboard");
 
 const seccionBeneficiarios =
-  document.getElementById("vista-beneficiarios");  
+  document.getElementById("vista-beneficiarios");
+
+const seccionAfiliaciones =
+  document.getElementById("vista-afiliaciones");
 
 const seccionModulo =
   document.getElementById("vista-modulo");
@@ -119,6 +122,14 @@ const modulos = {
       "beneficiarias de los servicios de tu institución."
   },
 
+  /* NUEVO: AFILIACIONES */
+  afiliaciones: {
+    titulo: "Afiliaciones",
+    descripcion:
+      "Revisa las solicitudes de afiliación de beneficiarios " +
+      "y decide cuáles corresponden a tu institución."
+  },
+
   servicios: {
     titulo: "Servicios",
     descripcion:
@@ -168,21 +179,54 @@ const modulos = {
   }
 };
 
+/* =========================================
+   ABRIR MÓDULOS
+========================================= */
+
 function abrirModulo(nombre) {
   const configuracion = modulos[nombre];
 
   if (!configuracion) return;
 
-  const esDashboard = nombre === "dashboard";
+  const esDashboard =
+    nombre === "dashboard";
 
-  const esBeneficiarios = nombre === "beneficiarios";
+  const esBeneficiarios =
+    nombre === "beneficiarios";
 
-seccionDashboard.hidden = !esDashboard;
-seccionBeneficiarios.hidden = !esBeneficiarios;
+  const esAfiliaciones =
+    nombre === "afiliaciones";
 
-seccionModulo.hidden =
-  esDashboard || esBeneficiarios;
+  // Evita abrir afiliaciones si todavía
+  // no existe su sección en el HTML.
+  if (
+    esAfiliaciones &&
+    !seccionAfiliaciones
+  ) {
+    anunciar(
+      "No se encontró la sección de afiliaciones en el panel."
+    );
+    return;
+  }
 
+  // Mostrar únicamente el módulo seleccionado.
+  seccionDashboard.hidden = !esDashboard;
+
+  seccionBeneficiarios.hidden = !esBeneficiarios;
+
+  if (seccionAfiliaciones) {
+    seccionAfiliaciones.hidden = !esAfiliaciones;
+  }
+
+  // El módulo genérico se utiliza para
+  // Servicios, Personal, Solicitudes,
+  // Asignaciones, Seguimiento, Reportes y Planes.
+  seccionModulo.hidden =
+    esDashboard ||
+    esBeneficiarios ||
+    esAfiliaciones;
+
+  // Actualizar el título superior.
   tituloSuperior.textContent =
     configuracion.titulo;
 
@@ -194,40 +238,61 @@ seccionModulo.hidden =
       configuracion.descripcion;
   }
 
-  document.querySelectorAll(".sidebar-nav .nav-item")
-    .forEach(boton => {
+  // Actualizar la opción activa del menú.
+  document.querySelectorAll(
+    ".sidebar-nav .nav-item"
+  ).forEach(boton => {
 
-      const activo =
-        boton.dataset.view === nombre;
+    const activo =
+      boton.dataset.view === nombre;
 
-      boton.classList.toggle("active", activo);
+    boton.classList.toggle(
+      "active",
+      activo
+    );
 
-      if (activo) {
-        boton.setAttribute("aria-current", "page");
-      } else {
-        boton.removeAttribute("aria-current");
-      }
-    });
+    if (activo) {
+      boton.setAttribute(
+        "aria-current",
+        "page"
+      );
+    } else {
+      boton.removeAttribute(
+        "aria-current"
+      );
+    }
+  });
 
+  // Anunciar navegación a lectores de pantalla.
   anunciar(
-    "Vista seleccionada: " + configuracion.titulo
+    "Vista seleccionada: " +
+    configuracion.titulo
   );
 
+  // Colocar el foco en el contenido.
   elemento("contenido").focus({
     preventScroll: true
   });
 
+  // Volver al inicio de la página.
   window.scrollTo({
     top: 0,
     behavior: "instant"
   });
 }
 
+/* =========================================
+   EVENTOS DEL MENÚ LATERAL
+========================================= */
+
 document.addEventListener("click", evento => {
-  const boton = evento.target.closest("[data-view]");
+  const boton =
+    evento.target.closest("[data-view]");
 
   if (boton) {
-    abrirModulo(boton.dataset.view);
+    abrirModulo(
+      boton.dataset.view
+    );
   }
 });
 
@@ -235,20 +300,26 @@ document.addEventListener("click", evento => {
    MODO CLARO Y OSCURO
 ========================================= */
 
-const botonTema = elemento("tema");
+const botonTema =
+  elemento("tema");
 
 const temaGuardado = almacenamiento(() =>
   localStorage.getItem("accesia-theme")
 );
 
 raiz.dataset.theme =
-  temaGuardado === "light" ? "light" : "dark";
+  temaGuardado === "light"
+    ? "light"
+    : "dark";
 
 function actualizarTema() {
-  const claro = raiz.dataset.theme === "light";
+  const claro =
+    raiz.dataset.theme === "light";
 
   botonTema.textContent =
-    claro ? "Modo oscuro" : "Modo claro";
+    claro
+      ? "Modo oscuro"
+      : "Modo claro";
 
   botonTema.setAttribute(
     "aria-label",
@@ -261,6 +332,7 @@ function actualizarTema() {
 actualizarTema();
 
 botonTema.addEventListener("click", () => {
+
   raiz.dataset.theme =
     raiz.dataset.theme === "dark"
       ? "light"
@@ -276,7 +348,9 @@ botonTema.addEventListener("click", () => {
   actualizarTema();
 
   anunciar(
-    "Tema " + raiz.dataset.theme + " activado."
+    "Tema " +
+    raiz.dataset.theme +
+    " activado."
   );
 });
 
@@ -284,43 +358,67 @@ botonTema.addEventListener("click", () => {
    ALTO CONTRASTE
 ========================================= */
 
-elemento("contraste").addEventListener("click", () => {
-  const activo =
-    raiz.classList.toggle("high-contrast");
+elemento("contraste")
+  .addEventListener("click", () => {
 
-  elemento("contraste").setAttribute(
-    "aria-pressed",
-    String(activo)
-  );
+    const activo =
+      raiz.classList.toggle(
+        "high-contrast"
+      );
 
-  anunciar(
-    activo
-      ? "Alto contraste activado."
-      : "Alto contraste desactivado."
-  );
-});
+    elemento("contraste").setAttribute(
+      "aria-pressed",
+      String(activo)
+    );
+
+    anunciar(
+      activo
+        ? "Alto contraste activado."
+        : "Alto contraste desactivado."
+    );
+  });
 
 /* =========================================
    TAMAÑO DEL TEXTO
 ========================================= */
 
-elemento("mas-texto").addEventListener("click", () => {
-  escalaTexto = Math.min(140, escalaTexto + 10);
-  raiz.style.fontSize = escalaTexto + "%";
+elemento("mas-texto")
+  .addEventListener("click", () => {
 
-  anunciar(
-    "Texto aumentado al " + escalaTexto + " por ciento."
-  );
-});
+    escalaTexto =
+      Math.min(
+        140,
+        escalaTexto + 10
+      );
 
-elemento("menos-texto").addEventListener("click", () => {
-  escalaTexto = Math.max(90, escalaTexto - 10);
-  raiz.style.fontSize = escalaTexto + "%";
+    raiz.style.fontSize =
+      escalaTexto + "%";
 
-  anunciar(
-    "Texto ajustado al " + escalaTexto + " por ciento."
-  );
-});
+    anunciar(
+      "Texto aumentado al " +
+      escalaTexto +
+      " por ciento."
+    );
+  });
+
+elemento("menos-texto")
+  .addEventListener("click", () => {
+
+    escalaTexto =
+      Math.max(
+        90,
+        escalaTexto - 10
+      );
+
+    raiz.style.fontSize =
+      escalaTexto + "%";
+
+    anunciar(
+      "Texto ajustado al " +
+      escalaTexto +
+      " por ciento."
+    );
+  });
 
 /* =========================================
    LECTURA DE VOZ
@@ -329,83 +427,136 @@ elemento("menos-texto").addEventListener("click", () => {
 const vozDisponible =
   "speechSynthesis" in window;
 
-const botonEscuchar = elemento("escuchar");
-const botonPausar = elemento("pausar");
+const botonEscuchar =
+  elemento("escuchar");
+
+const botonPausar =
+  elemento("pausar");
 
 if (!vozDisponible) {
+
   botonEscuchar.disabled = true;
   botonPausar.disabled = true;
 
 } else {
 
-  botonEscuchar.addEventListener("click", () => {
-    const motor = window.speechSynthesis;
+  botonEscuchar.addEventListener(
+    "click",
+    () => {
 
-    if (motor.speaking || motor.paused) {
-      motor.cancel();
-      botonPausar.textContent = "Pausar / Repetir";
-      return;
-    }
+      const motor =
+        window.speechSynthesis;
 
-    const titulo = tituloSuperior.textContent;
+      if (
+        motor.speaking ||
+        motor.paused
+      ) {
+        motor.cancel();
 
-    const contenido =
-      seccionDashboard.hidden
-        ? elemento("descripcion-modulo").textContent
-        : "Gestiona beneficiarios, servicios, solicitudes, " +
-          "personal, asignaciones, seguimiento, " +
-          "reportes, planes y suscripciones.";
+        botonPausar.textContent =
+          "Pausar / Repetir";
 
-    ultimoTexto =
-      "AccesIA. " + titulo + ". " + contenido;
+        return;
+      }
 
-    const lectura =
-      new SpeechSynthesisUtterance(ultimoTexto);
+      const titulo =
+        tituloSuperior.textContent;
 
-    lectura.lang = "es-PE";
-    lectura.rate = 0.95;
+      const contenido =
+        seccionDashboard.hidden
+          ? (
+              !seccionAfiliaciones?.hidden
+                ? modulos.afiliaciones.descripcion
+                : elemento(
+                    "descripcion-modulo"
+                  ).textContent
+            )
+          : (
+              "Gestiona beneficiarios, afiliaciones, " +
+              "servicios, solicitudes, personal, " +
+              "asignaciones, seguimiento, reportes, " +
+              "planes y suscripciones."
+            );
 
-    lectura.onend = () => {
-      botonPausar.textContent = "Pausar / Repetir";
-    };
+      ultimoTexto =
+        "AccesIA. " +
+        titulo +
+        ". " +
+        contenido;
 
-    motor.speak(lectura);
-  });
-
-  botonPausar.addEventListener("click", () => {
-    const motor = window.speechSynthesis;
-
-    if (motor.paused) {
-      motor.resume();
-      botonPausar.textContent = "Pausar / Repetir";
-
-    } else if (motor.speaking) {
-      motor.pause();
-      botonPausar.textContent = "Reanudar";
-
-    } else if (ultimoTexto) {
       const lectura =
-        new SpeechSynthesisUtterance(ultimoTexto);
+        new SpeechSynthesisUtterance(
+          ultimoTexto
+        );
 
       lectura.lang = "es-PE";
+      lectura.rate = 0.95;
+
+      lectura.onend = () => {
+        botonPausar.textContent =
+          "Pausar / Repetir";
+      };
+
       motor.speak(lectura);
     }
-  });
+  );
 
-  window.addEventListener("pagehide", () => {
-    window.speechSynthesis.cancel();
-  });
+  botonPausar.addEventListener(
+    "click",
+    () => {
+
+      const motor =
+        window.speechSynthesis;
+
+      if (motor.paused) {
+
+        motor.resume();
+
+        botonPausar.textContent =
+          "Pausar / Repetir";
+
+      } else if (motor.speaking) {
+
+        motor.pause();
+
+        botonPausar.textContent =
+          "Reanudar";
+
+      } else if (ultimoTexto) {
+
+        const lectura =
+          new SpeechSynthesisUtterance(
+            ultimoTexto
+          );
+
+        lectura.lang = "es-PE";
+
+        motor.speak(lectura);
+      }
+    }
+  );
+
+  window.addEventListener(
+    "pagehide",
+    () => {
+      window.speechSynthesis.cancel();
+    }
+  );
 }
 
 /* =========================================
    AYUDA
 ========================================= */
 
-const dialogo = elemento("dialogo-ayuda");
+const dialogo =
+  elemento("dialogo-ayuda");
 
-elemento("ayuda").addEventListener("click", () => {
-  dialogo.showModal();
-});
+elemento("ayuda").addEventListener(
+  "click",
+  () => {
+    dialogo.showModal();
+  }
+);
 
 /* =========================================
    CERRAR SESIÓN REAL
@@ -414,13 +565,18 @@ elemento("ayuda").addEventListener("click", () => {
 elemento("cerrar-sesion")
   .addEventListener("click", async () => {
 
-    const boton = elemento("cerrar-sesion");
+    const boton =
+      elemento("cerrar-sesion");
+
     boton.disabled = true;
 
-    anunciar("Cerrando sesión institucional.");
+    anunciar(
+      "Cerrando sesión institucional."
+    );
 
     try {
-      // Obtener el token CSRF vigente.
+
+      // Obtener token CSRF vigente.
       const respuestaToken = await fetch(
         "/api/auth/csrf",
         {
@@ -435,16 +591,22 @@ elemento("cerrar-sesion")
         );
       }
 
-      const csrf = await respuestaToken.json();
+      const csrf =
+        await respuestaToken.json();
 
-      // Cerrar la sesión administrada por Spring Security.
-      const respuesta = await fetch("/logout", {
-        method: "POST",
-        credentials: "same-origin",
-        headers: {
-          [csrf.headerName]: csrf.token
+      // Cerrar la sesión administrada
+      // por Spring Security.
+      const respuesta = await fetch(
+        "/logout",
+        {
+          method: "POST",
+          credentials: "same-origin",
+          headers: {
+            [csrf.headerName]:
+              csrf.token
+          }
         }
-      });
+      );
 
       if (!respuesta.ok) {
         throw new Error(
@@ -458,8 +620,11 @@ elemento("cerrar-sesion")
       );
 
     } catch (error) {
+
       anunciar(error.message);
+
       alert(error.message);
+
       boton.disabled = false;
     }
   });
